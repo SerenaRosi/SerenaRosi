@@ -2,19 +2,13 @@
 
 A public repository for Structural Bioinformatics tools.
 
+<br />
+
 *Serena Rosignoli <br />
 PhD student <br />
 Department of Biochemical Sciences - Sapienza University <br />
 Rome <br />*
-📫 How to reach me: serena.rosignoli@uniroma1.it
-Here are some ideas to get you started:
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+📫 How to reach me: serena.rosignoli@uniroma1.it
+
+
