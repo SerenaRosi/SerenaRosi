@@ -7,9 +7,9 @@ A public repository for Structural Bioinformatics tools.
 
 <br />
 
-What will you find in these repositories:
+What will you find in these repositories: <br />
 :computer: Programming languages, metalanguages and environments in use: *Python, JS, HTML, CSS, Bash, R* <br />
-:bulb: Topics:
+:bulb: Topics: **
 
 *Serena Rosignoli <br />
 PhD student <br />
