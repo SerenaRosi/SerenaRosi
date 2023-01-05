@@ -28,7 +28,7 @@ Rome <br />*
 
 ### PyMOL plugins
 
-- DockingPie: a Consensus Docking Plugin for PyMOL [Repo](https://github.com/paiardin/DockingPie). [DOI](https://doi.org/10.1093/bioinformatics/btac452 "Rosignoli et al., Bioinformatics, 2022")
+- DockingPie: a Consensus Docking Plugin for PyMOL: - [Repository](https://github.com/paiardin/DockingPie) - [DOI](https://doi.org/10.1093/bioinformatics/btac452 "Rosignoli et al., Bioinformatics, 2022")
 
 ### Web-servers
 
