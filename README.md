@@ -1,8 +1,12 @@
 ### Hi there 👋
 
-<!--
-**SerenaRosi/SerenaRosi** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+A public repository for Structural Bioinformatics tools.
 
+*Serena Rosignoli <br />
+PhD student <br />
+Department of Biochemical Sciences - Sapienza University <br />
+Rome <br />*
+📫 How to reach me: serena.rosignoli@uniroma1.it
 Here are some ideas to get you started:
 
 - 🔭 I’m currently working on ...
@@ -10,7 +14,7 @@ Here are some ideas to get you started:
 - 👯 I’m looking to collaborate on ...
 - 🤔 I’m looking for help with ...
 - 💬 Ask me about ...
-- 📫 How to reach me: ...
+- 
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
