@@ -23,6 +23,7 @@ Rome <br />*
 ## Index
 
 ### Python toolbox
+- [*Bioinfo-Python-toolbox*](https://github.com/SerenaRosi/Bioinfo-Python-toolbox)
 
 ### PyMOL toolbox
 
