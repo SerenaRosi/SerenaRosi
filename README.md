@@ -11,7 +11,7 @@ What will you find in these repositories: <br />
 :computer: Programming languages, metalanguages and environments in use: *Python, JS, HTML, CSS, Bash, R* <br />
 :bulb: Topics: **
 
-*Serena Rosignoli <br />
+*Serena Rosignoli (she/her) <br />
 PhD student <br />
 Department of Biochemical Sciences - Sapienza University <br />
 Rome <br />*
