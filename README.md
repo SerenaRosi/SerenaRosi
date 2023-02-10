@@ -25,11 +25,11 @@ Rome <br />*
 ### Python toolbox
 - [*Bioinfo-Python-toolbox*](https://github.com/SerenaRosi/Bioinfo-Python-toolbox)
 
-### PyMOL toolbox
-
 ### PyMOL plugins
 
 - [*DockingPie: a Consensus Docking Plugin for PyMOL*](https://github.com/paiardin/DockingPie) - [DOI](https://doi.org/10.1093/bioinformatics/btac452 "Rosignoli et al., Bioinformatics, 2022")
+
+- [*PyMOL-toolbox*](https://github.com/SerenaRosi)
 
 ### Web-servers
 
