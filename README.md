@@ -39,8 +39,6 @@ Rome <br />*
 
 - [*PyMOL-toolbox*](https://github.com/SerenaRosi)
 
-### Web-servers
-
 ### Structural Bioinformatics with R
 
 - Tutorial on ROC curves for Molecular Docking performance evaluation [Tutorial](
