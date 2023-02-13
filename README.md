@@ -22,14 +22,14 @@ Rome <br />*
 
 ## Index
 
-### Articles
-
-- [*Boosting the Full Potential of PyMOL with Structural Biology Plugins*](https://doi.org/10.3390/biom12121764)
-
 ### Python toolbox
 - [*Bioinfo-Python-toolbox*](https://github.com/SerenaRosi/Bioinfo-Python-toolbox)
 
 ### PyMOL
+
+#### General readings 
+
+- [*Boosting the Full Potential of PyMOL with Structural Biology Plugins*](https://doi.org/10.3390/biom12121764)
 
 #### Plugins
 
