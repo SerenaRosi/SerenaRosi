@@ -35,6 +35,8 @@ Rome <br />*
 
 - [*DockingPie: a Consensus Docking Plugin for PyMOL*](https://github.com/paiardin/DockingPie "GitHub repository") - [DOI](https://doi.org/10.1093/bioinformatics/btac452 "Rosignoli et al., Bioinformatics, 2022")
 
+- [*PyMod: a complete suite for Structural Bioinformatics*](https://github.com/pymodproject/pymod)
+- 
 #### Utilities 
 
 - [*PyMOL-toolbox*](https://github.com/SerenaRosi)
