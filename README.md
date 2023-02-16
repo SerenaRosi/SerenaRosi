@@ -39,7 +39,7 @@ Rome <br />*
 
 #### Utilities 
 
-- [*PyMOL-toolbox*](https://github.com/SerenaRosi)
+- [*PyMOL-toolbox*](https://github.com/SerenaRosi/PyMOL-toolbox)
 
 ### Structural Bioinformatics with R
 
