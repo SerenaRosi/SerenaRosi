@@ -27,7 +27,7 @@ Rome <br />*
 
 ### PyMOL
 
-#### General readings 
+#### Readings 
 
 - [*Boosting the Full Potential of PyMOL with Structural Biology Plugins*](https://doi.org/10.3390/biom12121764)
 
