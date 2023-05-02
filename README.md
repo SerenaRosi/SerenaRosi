@@ -3,8 +3,6 @@
 
 ### Hi there 👋
 
-A public repository for Structural Bioinformatics tools.
-
 <br />
 
 What will you find in these repositories: <br />
