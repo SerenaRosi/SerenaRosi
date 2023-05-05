@@ -25,7 +25,7 @@ Rome <br />*
 
 ### Talks and Lectures
 
-- [*Talks and Lectures*]()
+- [*Talks and Lectures*](https://github.com/SerenaRosi/SerenaRosi_lectures)
 
 ### PyMOL
 
