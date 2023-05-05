@@ -29,13 +29,13 @@ Rome <br />*
 
 - [*Boosting the Full Potential of PyMOL with Structural Biology Plugins*](https://doi.org/10.3390/biom12121764)
 
+- [*Talks and Lectures*]()
+
 #### Plugins
 
 - [*DockingPie: a Consensus Docking Plugin for PyMOL*](https://github.com/paiardin/DockingPie "GitHub repository") - [DOI](https://doi.org/10.1093/bioinformatics/btac452 "Rosignoli et al., Bioinformatics, 2022")
 
 - [*PyMod: a complete suite for Structural Bioinformatics*](https://github.com/pymodproject/pymod)
-
-- [*Talks and Lectures*]()
 
 #### Utilities 
 
