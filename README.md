@@ -23,13 +23,15 @@ Rome <br />*
 ### Python toolbox
 - [*Bioinfo-Python-toolbox*](https://github.com/SerenaRosi/Bioinfo-Python-toolbox)
 
+### Talks and Lectures
+
 ### PyMOL
+
+- [*Talks and Lectures*]()
 
 #### Readings 
 
 - [*Boosting the Full Potential of PyMOL with Structural Biology Plugins*](https://doi.org/10.3390/biom12121764)
-
-- [*Talks and Lectures*]()
 
 #### Plugins
 
