@@ -25,9 +25,9 @@ Rome <br />*
 
 ### Talks and Lectures
 
-### PyMOL
-
 - [*Talks and Lectures*]()
+
+### PyMOL
 
 #### Readings 
 
