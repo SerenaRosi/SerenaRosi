@@ -20,6 +20,10 @@ Rome <br />*
 
 ## Index
 
+### Algorithms Specialization - Stanford - Coursera 
+
+- [*Programming Assignments*]()
+
 ### Python toolbox
 - [*Bioinfo-Python-toolbox*](https://github.com/SerenaRosi/Bioinfo-Python-toolbox)
 
