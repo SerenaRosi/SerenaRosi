@@ -22,7 +22,7 @@ Rome <br />*
 
 ### Algorithms Specialization - Stanford - Coursera 
 
-- [*Programming Assignments*]()
+- [*Programming Assignments*](https://github.com/SerenaRosi/AlgorithmsSpecializationStanford)
 
 ### Python toolbox
 - [*Bioinfo-Python-toolbox*](https://github.com/SerenaRosi/Bioinfo-Python-toolbox)
