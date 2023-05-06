@@ -28,8 +28,7 @@ Rome <br />*
 - [*Bioinfo-Python-toolbox*](https://github.com/SerenaRosi/Bioinfo-Python-toolbox)
 
 ### Talks and Lectures
-
-- [*Talks and Lectures*](https://github.com/SerenaRosi/SerenaRosi_lectures)
+Some of the projects I am most proud of are listed [*here*](https://github.com/SerenaRosi/SerenaRosi_lectures)
 
 ### PyMOL
 
