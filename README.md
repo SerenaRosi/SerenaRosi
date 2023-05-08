@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=Serena-Rosignoli&fontSize=90)
+![waving](https://capsule-render.vercel.app/api?type=waving&height=200&text=Serena-Rosignoli&fontAlign=80&fontAlignY=40&color=gradient)
 
 ### Hi there 👋
 
