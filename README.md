@@ -1,5 +1,3 @@
- :warning: :wrench: PAGE UNDER DEVELOPMENT - 2023 :wrench: :warning:
-
 ![header](https://capsule-render.vercel.app/api?type=wave&color=auto&height=300&section=header&text=Serena-Rosignoli&fontSize=90)
 
 ### Hi there 👋
