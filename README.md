@@ -2,16 +2,14 @@
 
 ### Hi there 👋
 
-<br />
+#### Serena Rosignoli (she/her)
+*PhD student <br />
+Department of Biochemical Sciences - Sapienza University of Rome <br />
+Rome, IT <br />*
 
 What will you find in these repositories: <br />
 :computer: Programming languages, metalanguages and environments in use: *Python, JS, HTML, CSS, Bash, R* <br />
 :bulb: Topics: Structural Bioinformatics, Algorithms, Drug Design
-
-*Serena Rosignoli (she/her) <br />
-PhD student <br />
-Department of Biochemical Sciences - Sapienza University <br />
-Rome <br />*
 
 
 📫 How to reach me: serena.rosignoli@uniroma1.it
