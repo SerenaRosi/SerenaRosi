@@ -1,4 +1,4 @@
-![waving](https://capsule-render.vercel.app/api?type=waving&height=200&text=Serena-Rosignoli&color=gradient)
+![waving](https://capsule-render.vercel.app/api?type=waving&height=200&text=Invert,%20always%20invert&color=gradient&fontSize=15&fontAlign=80)
 
 ### Hi there 👋
 
