@@ -17,17 +17,6 @@ What will you find in these repositories: <br />
 
 ## Index
 
-### Algorithms Specialization - Stanford - Coursera 
-
-- [*Programming Assignments*](https://github.com/SerenaRosi/AlgorithmsSpecializationStanford)
-
-### Python toolbox
-- [*Bioinfo-Python-toolbox*](https://github.com/SerenaRosi/Bioinfo-Python-toolbox)
-
-### Talks and Lectures
-
-Some material from my past talks and lectures can be found [*here*](https://github.com/SerenaRosi/SerenaRosi_lectures)
-
 ### PyMOL
 
 #### Readings 
@@ -44,9 +33,20 @@ Some material from my past talks and lectures can be found [*here*](https://gith
 
 - [*PyMOL-toolbox*](https://github.com/SerenaRosi/PyMOL-toolbox)
 
-### Structural Bioinformatics with R
+### Talks and Lectures
 
-- Tutorial on ROC curves for Molecular Docking performance evaluation [Tutorial](
+Some material from my past talks and lectures can be found [*here*](https://github.com/SerenaRosi/SerenaRosi_lectures)
+
+* [Introduction to Molecular Docking](https://github.com/SerenaRosi/SerenaRosi_lectures/blob/main/Docking_introduction.pdf)
+* DockingPie: [DockingPie 2021](https://github.com/SerenaRosi/SerenaRosi_lectures/blob/main/Poster_dockingpie_2021.pdf), [DockingPie 2023](https://github.com/SerenaRosi/SerenaRosi_lectures/blob/main/poster_dockingpie_2023.pdf)
+* [Sampling Distributions and the Bootstrap](https://github.com/SerenaRosi/SerenaRosi_lectures/blob/main/sampling_distributions.pdf)
+* Tutorial on ROC curves for Molecular Docking performance evaluation [Tutorial](
 https://htmlpreview.github.io/?https://github.com/SerenaRosi/StructuralBioinformatics-R/blob/main/ROC_curves/roc_curves_molecular_docking.html ) - [Source Code](https://github.com/SerenaRosi/StructuralBioinformatics-R/blob/main/ROC_curves/roc_curves_molecular_docking.Rmd)
 
+### Algorithms Specialization - Stanford - Coursera 
+
+- [*Programming Assignments*](https://github.com/SerenaRosi/AlgorithmsSpecializationStanford)
+
+### Python toolbox
+- [*Bioinfo-Python-toolbox*](https://github.com/SerenaRosi/Bioinfo-Python-toolbox)
 
