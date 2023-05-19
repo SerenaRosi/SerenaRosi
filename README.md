@@ -39,7 +39,7 @@ Some material from my past talks and lectures can be found [*here*](https://gith
 
 * [Introduction to Molecular Docking](https://github.com/SerenaRosi/SerenaRosi_lectures/blob/main/Docking_introduction.pdf)
 * DockingPie: [DockingPie 2021](https://github.com/SerenaRosi/SerenaRosi_lectures/blob/main/Poster_dockingpie_2021.pdf), [DockingPie 2023](https://github.com/SerenaRosi/SerenaRosi_lectures/blob/main/poster_dockingpie_2023.pdf)
-* [Sampling Distributions and the Bootstrap](https://github.com/SerenaRosi/SerenaRosi_lectures/blob/main/sampling_distributions.pdf)
+* *Data Analysis* course presentation [Sampling Distributions and the Bootstrap](https://github.com/SerenaRosi/SerenaRosi_lectures/blob/main/sampling_distributions.pdf)
 * Tutorial on ROC curves for Molecular Docking performance evaluation [Tutorial](
 https://htmlpreview.github.io/?https://github.com/SerenaRosi/StructuralBioinformatics-R/blob/main/ROC_curves/roc_curves_molecular_docking.html ) - [Source Code](https://github.com/SerenaRosi/StructuralBioinformatics-R/blob/main/ROC_curves/roc_curves_molecular_docking.Rmd)
 
