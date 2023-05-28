@@ -1,23 +1,28 @@
-![waving](https://capsule-render.vercel.app/api?type=waving&height=200&text=Keep%20it%20Simple&color=gradient&fontSize=15&fontAlign=80)
 
 ### Hi there 👋
 
-#### Serena Rosignoli (she/her)
-*PhD student <br />
+Here is **Serena**!
+In my GitHub page you'll find my coding projects and open-source contributions that spans at the interface between <br />
+**Structural Biochemistry, Algorithms and Data Science**.
+
+
+
+Do not hesitate to contact me! 
+I am always open to multi-disciplinary brainstormings and collaborations, please find my contact details below:
+
+*Serena Rosignoli (she/her) <br />
+PhD student <br />
 Department of Biochemical Sciences - Sapienza University of Rome <br />
 Rome, IT <br />*
 
-What will you find in these repositories: <br />
-:computer: Programming languages, metalanguages and environments in use: *Python, JS, HTML, CSS, Bash, R* <br />
-:bulb: Topics: Structural Bioinformatics, Algorithms, Drug Design
+📫 How to reach me: serena.rosignoli@uniroma1.it <br />
+:black_nib: Serena Rosignoli on [LinkedIn](https://www.linkedin.com/in/serenarosignoli97/)
 
 
-📫 How to reach me: serena.rosignoli@uniroma1.it
-
-
-## Index
-
+# :point_down: Index
 ### PyMOL
+
+As a firm believer in the power of the open-source initiatives in support of the development of the Molecular Graphics Viewer PyMOL, I have actively contributed to the development of publicly available plugins, articles and general utilities. 
 
 #### Readings 
 
