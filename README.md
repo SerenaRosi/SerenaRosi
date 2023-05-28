@@ -5,7 +5,7 @@ Here is **Serena**!
 In my GitHub page you'll find my coding projects and open-source contributions that spans at the interface between <br />
 **Structural Biochemistry, Algorithms and Data Science**.
 
-
+<br />
 
 Do not hesitate to contact me! 
 I am always open to multi-disciplinary brainstormings and collaborations, please find my contact details below:
