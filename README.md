@@ -22,7 +22,7 @@ Rome, IT <br />*
 # :point_down: Index
 ### PyMOL
 
-As a firm believer in the power of the open-source initiatives in support of the development of the Molecular Graphics Viewer PyMOL, I have actively contributed to the development of publicly available plugins, articles and general utilities. 
+As a firm believer of open-source initiatives in support of the development of the Molecular Graphics Viewer PyMOL, I have actively contributed to the development of publicly available plugins, articles and general utilities. 
 
 #### Readings 
 
