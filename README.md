@@ -36,7 +36,7 @@ As a firm believer of open-source initiatives in support of the development of t
 
 #### Utilities 
 
-- [*PyMOL issue*] a script to overcome the known PyMOL issue 'CommandNotFoundError: No command 'conda conda'.
+- [*PyMOL Conda environment*](https://github.com/SerenaRosi/PyMOL-toolbox) a script to overcome the known PyMOL issue 'CommandNotFoundError: No command 'conda conda'.
 - [*PyMOL-toolbox*](https://github.com/SerenaRosi/PyMOL-toolbox)
 
 ### Talks and Lectures
