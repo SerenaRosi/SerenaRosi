@@ -51,6 +51,10 @@ Some material from my past talks and lectures can be found [*here*](https://gith
 
 - [*Programming Assignments*](https://github.com/SerenaRosi/AlgorithmsSpecializationStanford)
 
-### Python toolbox
+### Python for Bioinformatics toolbox
 - [*Bioinfo-Python-toolbox*](https://github.com/SerenaRosi/Bioinfo-Python-toolbox)
+
+### Structural Bioinformatics with R
+- Tutorial on ROC curves for Molecular Docking performance evaluation [Tutorial](
+https://htmlpreview.github.io/?https://github.com/SerenaRosi/StructuralBioinformatics-R/blob/main/ROC_curves/roc_curves_molecular_docking.html ) - [Source Code](https://github.com/SerenaRosi/StructuralBioinformatics-R/blob/main/ROC_curves/roc_curves_molecular_docking.Rmd)
 
