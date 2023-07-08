@@ -3,7 +3,7 @@
 
 Here is **Serena**!
 In my GitHub page you'll find my coding projects and open-source contributions that spans at the interface between <br />
-**Structural Biochemistry, Algorithms and Data Science**.
+**Structural Biochemistry, Algorithms, Data Science and Software Engineering**.
 
 <br />
 
@@ -38,6 +38,7 @@ As a firm believer of open-source initiatives in support of the development of t
 
 - [*PyMOL Conda environment*](https://github.com/SerenaRosi/PyMOL-toolbox/blob/main/rosconda.py): a script to overcome the known PyMOL issue 'CommandNotFoundError: No command 'conda conda'.
 - [*PyMOL-toolbox*](https://github.com/SerenaRosi/PyMOL-toolbox)
+- [*Not-freezing PyMOL*]
 
 ### Talks and Lectures
 
