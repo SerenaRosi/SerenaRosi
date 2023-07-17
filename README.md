@@ -38,7 +38,7 @@ As a firm believer of open-source initiatives in support of the development of t
 
 - Browse all [*here*](https://github.com/SerenaRosi/PyMOL-toolbox)
   * [*PyMOL Conda environment*](https://github.com/SerenaRosi/PyMOL-toolbox/blob/main/rosconda.py): a script to overcome the known PyMOL issue 'CommandNotFoundError: No command 'conda conda'
-  * [*Not-freezing PyMOL*](https://github.com/SerenaRosi/PyMOL-toolbox/blob/main/PyMOLDialogThread.py): a tutorial to implement a non-freezing Dialog from which to run a process in Thread in a PyMOL plugin.
+  * [*Not-freezing PyMOL*](https://github.com/SerenaRosi/PyMOL-toolbox/blob/main/PyMOLDialogThread.py): a demo-tutorial to integrate PLUGINS + DIALOGS + THREADS with PyQt5 in PyMOL
 
 ### Talks and Lectures
 
