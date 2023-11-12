@@ -46,7 +46,7 @@ As a firm believer in open-source initiatives in support of the development of t
 
 Some material from my past talks and lectures can be found [*here*](https://github.com/SerenaRosi/SerenaRosi_lectures)
 
-* [Introduction to Molecular Docking](https://github.com/SerenaRosi/SerenaRosi_lectures/blob/main/Docking_introduction.pdf)
+* [Introduction to Molecular Docking](https://github.com/SerenaRosi/SerenaRosi_lectures/blob/main/Docking_introduction.pdf) @CIVIS-Summer School; @MEDILS Summer School.  
 * DockingPie: [DockingPie 2021](https://github.com/SerenaRosi/SerenaRosi_lectures/blob/main/Poster_dockingpie_2021.pdf), [DockingPie 2023](https://github.com/SerenaRosi/SerenaRosi_lectures/blob/main/poster_dockingpie_2023.pdf)
 * *Data Analysis* course presentation [Sampling Distributions and the Bootstrap](https://github.com/SerenaRosi/SerenaRosi_lectures/blob/main/sampling_distributions.pdf)
 
