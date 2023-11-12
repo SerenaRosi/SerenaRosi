@@ -2,13 +2,13 @@
 ### Hi there 👋
 
 Here is **Serena**!
-In my GitHub page you'll find my coding projects and open-source contributions that spans at the interface between <br />
+On my GitHub page, you'll find my coding projects and open-source contributions that span at the interface between <br />
 **Structural Biochemistry, Algorithms, Data Science and Software Engineering**.
 
 <br />
 
 Do not hesitate to contact me! 
-I am always open to multi-disciplinary brainstormings and collaborations, please find my contact details below:
+I am always open to multi-disciplinary brainstorming and collaborations, please find my contact details below:
 
 *Serena Rosignoli (she/her) <br />
 PhD student <br />
@@ -22,7 +22,7 @@ Rome, IT <br />*
 # :point_down: Index
 ### PyMOL
 
-As a firm believer of open-source initiatives in support of the development of the Molecular Graphics Viewer PyMOL, I have actively contributed to the development of publicly available plugins, articles and general utilities. 
+As a firm believer in open-source initiatives in support of the development of the Molecular Graphics Viewer PyMOL, I have actively contributed to the development of publicly available plugins, articles and general utilities. 
 
 #### Readings 
 
@@ -34,7 +34,7 @@ As a firm believer of open-source initiatives in support of the development of t
 
 - [*PyMod: a complete suite for Structural Bioinformatics*](https://github.com/pymodproject/pymod)
 
-- [*PyPCN: Protein Contacts Networks in PyMOL*](https://github.com/paiardin/DockingPie "GitHub repository") - [DOI](https://doi.org/10.1093/bioinformatics/btac452 "Rosignoli et al., Bioinformatics, 2022")
+- [*PyPCN: Protein Contacts Networks in PyMOL*](https://github.com/pcnproject/PyPCN "GitHub repository") - [DOI](https://doi.org/10.1093/bioinformatics/btad675 "Rosignoli et al., Bioinformatics, 2023")
 
 #### Utilities 
 
