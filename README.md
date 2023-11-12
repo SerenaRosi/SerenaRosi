@@ -34,6 +34,8 @@ As a firm believer of open-source initiatives in support of the development of t
 
 - [*PyMod: a complete suite for Structural Bioinformatics*](https://github.com/pymodproject/pymod)
 
+- [*PyPCN: Protein Contacts Networks in PyMOL*](https://github.com/paiardin/DockingPie "GitHub repository") - [DOI](https://doi.org/10.1093/bioinformatics/btac452 "Rosignoli et al., Bioinformatics, 2022")
+
 #### Utilities 
 
 - Browse all [*here*](https://github.com/SerenaRosi/PyMOL-toolbox)
