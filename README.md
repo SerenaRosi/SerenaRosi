@@ -7,9 +7,6 @@ On my GitHub page, you'll find my coding projects and open-source contributions 
 
 <br />
 
-Do not hesitate to contact me! 
-I am always open to multi-disciplinary brainstorming and collaborations, please find my contact details below:
-
 *Serena Rosignoli (she/her) <br />
 PhD student <br />
 Department of Biochemical Sciences - Sapienza University of Rome <br />
