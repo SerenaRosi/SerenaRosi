@@ -3,7 +3,7 @@
 
 Here is **Serena**!
 On my GitHub page, you'll find my coding projects and open-source contributions that span at the interface between <br />
-**Structural Biochemistry, Algorithms, Data Science and Software Engineering**.
+**Structural Biochemistry, Algorithms and Software Engineering**.
 
 <br />
 
