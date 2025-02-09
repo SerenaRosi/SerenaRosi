@@ -3,16 +3,16 @@
 
 Here is **Serena**!
 On my GitHub page, you'll find my coding projects and open-source contributions that span at the interface between <br />
-**Structural Biochemistry, Algorithms and Software Engineering**.
+**Structural Biochemistry and Software Engineering**.
 
 <br />
 
 *Serena Rosignoli (she/her) <br />
-PhD student <br />
-Department of Biochemical Sciences - Sapienza University of Rome <br />
-Rome, IT <br />*
+Post-Doctoral Research Fellow <br />
+Centre for Regenerative Medicine "Stefano Ferrari", University of Modena and Reggio Emilia <br />
+<br />*
 
-📫 How to reach me: serena.rosignoli@uniroma1.it <br />
+📫 How to reach me: serena.rosignoli@unimore.it <br />
 :black_nib: Serena Rosignoli on [LinkedIn](https://www.linkedin.com/in/serenarosignoli97/)
 
 
