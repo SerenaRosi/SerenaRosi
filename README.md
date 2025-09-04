@@ -13,7 +13,9 @@ Centre for Regenerative Medicine "Stefano Ferrari", University of Modena and Reg
 <br />*
 
 📫 How to reach me: serena.rosignoli@unimore.it <br />
-:black_nib: Serena Rosignoli on [LinkedIn](https://www.linkedin.com/in/serenarosignoli97/)
+:black_nib: Serena Rosignoli on [LinkedIn](https://www.linkedin.com/in/serenarosignoli97/) <br />
+[*PUBLICATIONS*](https://scholar.google.com/citations?user=tFQ9tMAAAAAJ&hl=it)
+
 
 
 # :point_down: Index
