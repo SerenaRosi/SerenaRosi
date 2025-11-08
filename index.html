@@ -312,7 +312,8 @@
       <h2>Pensatoio</h2>
       <p class="sub">A quiet space where ideas swirl like memories in a cloud — inspired by Silente’s pensieve.</p>
       <div class="pensatoio-wrap">
-        <canvas id="pensatoio-canvas" aria-label="Animated swirling clouds visualization" role="img"></canvas>
+        <!-- Edit the words by changing the data-words value below. Use | to separate phrases. -->
+        <canvas id="pensatoio-canvas" aria-label="Animated swirling clouds visualization" role="img" data-words="Wonder|Curiosity|Design|Logic|Freedom"></canvas>
         <div class="pensatoio-controls" aria-label="Pensatoio controls">
           <button class="btn" id="pensatoio-toggle" type="button">Play motion</button>
           <button class="btn ghost" id="pensatoio-refresh" type="button">Shuffle clouds</button>
@@ -359,16 +360,75 @@
       function rand(a,b){ return a + Math.random()*(b-a); }
 
       function resetBlobs(){
+        const wordsAttr = (canvas.getAttribute('data-words')||'').trim();
+        const words = wordsAttr ? wordsAttr.split('|').map(s=>s.trim()).filter(Boolean) : [];
         blobs = Array.from({length:CNT}, (_,i)=>({
+          x: rand(0, W/dpr), y: rand(0, H/dpr), r: rand(80, 170),
+          vx: rand(-0.25, 0.25), vy: rand(-0.18, 0.18), hue: i%2===0 ? 210 : 175,
+          alpha: rand(0.28, 0.4), label: words.length ? words[i % words.length] : null, phase: rand(0, Math.PI*2)
+        }));
+      }, (_,i)=>({
           x: rand(0, W/dpr), y: rand(0, H/dpr), r: rand(70, 160),
           vx: rand(-0.18, 0.18), vy: rand(-0.12, 0.12), hue: i%2===0 ? 270 : 175,
-          alpha: rand(0.10, 0.18)
+          alpha: rand(0.28, 0.4)
         }));
       }
 
       function drawBlob(b){
-        const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
-        const col = `hsla(${b.hue}, 90%, 65%, `;
+        // Cartoon cloud made from overlapping circles (Toy-Story-like)
+        const x=b.x, y=b.y, r=b.r*0.6; // base size
+        const p = [
+          {dx:0, dy:0, dr:r*0.85},
+          {dx:-r*0.6, dy:r*0.05, dr:r*0.65},
+          {dx:r*0.55, dy:r*0.0, dr:r*0.6},
+          {dx:-r*0.2, dy:-r*0.45, dr:r*0.55},
+          {dx:r*0.2, dy:-r*0.5, dr:r*0.5},
+        ];
+        // Shadow
+        ctx.save();
+        ctx.filter='blur(6px)';
+        ctx.globalAlpha = 0.35;
+        ctx.fillStyle = 'rgba(0,0,0,0.5)';
+        ctx.beginPath();
+        for (const c of p) { ctx.moveTo(x+c.dx+c.dr, y+c.dy); ctx.arc(x+c.dx, y+c.dy, c.dr, 0, Math.PI*2); }
+        ctx.fill();
+        ctx.restore();
+
+        // Fill
+        ctx.fillStyle = 'rgba(255,255,255,0.25)';
+        ctx.beginPath();
+        for (const c of p) { ctx.moveTo(x+c.dx+c.dr, y+c.dy); ctx.arc(x+c.dx, y+c.dy, c.dr, 0, Math.PI*2); }
+        ctx.fill();
+        // Stroke
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'rgba(255,255,255,0.8)';
+        ctx.stroke();
+
+        // Soft color glow that matches the theme hues
+        const g = ctx.createRadialGradient(x, y, r*0.2, x, y, r*1.4);
+        g.addColorStop(0, `hsla(${b.hue}, 90%, 70%, ${b.alpha*0.9})`);
+        g.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.save();
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(x, y, r*1.4, 0, Math.PI*2);
+        ctx.fill();
+        ctx.restore();
+
+        // Word label
+        if (b.label){
+          const tAlpha = 0.6 + 0.4*Math.sin(b.phase);
+          ctx.save();
+          ctx.globalAlpha = tAlpha;
+          ctx.fillStyle = 'rgba(255,255,255,0.95)';
+          ctx.font = `600 ${Math.max(12, r*0.35)}px Inter, system-ui, sans-serif`;
+          ctx.textAlign='center'; ctx.textBaseline='middle';
+          ctx.shadowColor='rgba(0,0,0,0.4)'; ctx.shadowBlur=8; ctx.shadowOffsetY=2;
+          ctx.fillText(b.label, x, y - r*0.05);
+          ctx.restore();
+        }
+      }, 90%, 65%, `;
         g.addColorStop(0, col + (b.alpha*1.2) + ')');
         g.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.fillStyle = g; ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI*2); ctx.fill();
@@ -384,12 +444,14 @@
       function tick(){
         render();
         for(const b of blobs){
-          b.x += b.vx; b.y += b.vy;
+          b.x += b.vx; b.y += b.vy; b.phase += 0.008; // text fade
           if (b.x < -b.r) b.x = canvas.width/dpr + b.r;
           if (b.x > canvas.width/dpr + b.r) b.x = -b.r;
           if (b.y < -b.r) b.y = canvas.height/dpr + b.r;
           if (b.y > canvas.height/dpr + b.r) b.y = -b.r;
         }
+        if (running) raf = requestAnimationFrame(tick);
+      }
         if (running) raf = requestAnimationFrame(tick);
       }
 
