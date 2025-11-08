@@ -546,9 +546,13 @@
   function loadScores(){
     var raw = localStorage.getItem(KEY);
     var arr = raw ? JSON.parse(raw) : [];
-    var cutoff = now() - DAY;
-    // prune >24h old
-    arr = arr.filter(function(s){ return s.ts >= cutoff; });
+
+    // midnight cutoff (local time)
+var today = new Date();
+today.setHours(0, 0, 0, 0);
+var cutoff = today.getTime();
+arr = arr.filter(function(s){ return s.ts >= cutoff; });
+
     localStorage.setItem(KEY, JSON.stringify(arr));
     return arr;
   }
@@ -655,6 +659,23 @@
   setState('idle');
   setTimeout(schedule, 500);
 })();
+
+    // Clear scores automatically when the date changes (midnight)
+(function scheduleMidnightReset(){
+  var nowTime = new Date();
+  var nextMidnight = new Date();
+  nextMidnight.setHours(24, 0, 0, 0);
+  var msUntilMidnight = nextMidnight - nowTime;
+  setTimeout(function(){
+    localStorage.removeItem(KEY);
+    renderTable();
+    bestEl.textContent='—';
+    countEl.textContent='0';
+    // Schedule again for next day
+    scheduleMidnightReset();
+  }, msUntilMidnight);
+})();
+
 
   </script>
 </body>
