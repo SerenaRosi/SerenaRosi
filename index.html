@@ -342,126 +342,128 @@
       const canvas = document.getElementById('pensatoio-canvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      let running = !mq.matches;
       const toggleBtn = document.getElementById('pensatoio-toggle');
       const refreshBtn = document.getElementById('pensatoio-refresh');
 
-      let dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-      let W=0, H=0, blobs=[]; const CNT=14;
-      let running = !prefersReduced; // if user prefers reduced motion, start paused
+      let dpr = Math.min(2, window.devicePixelRatio || 1);
+      let W = 0, H = 0;
+      let blobs = [];
+      const CNT = 12;
       let raf = null;
 
       function resize(){
         const rect = canvas.getBoundingClientRect();
-        W = Math.floor(rect.width * dpr); H = Math.floor(rect.height * dpr);
-        canvas.width = W; canvas.height = H; ctx.setTransform(1,0,0,1,0,0); ctx.scale(dpr, dpr);
+        W = Math.max(1, Math.floor(rect.width));
+        H = Math.max(1, Math.floor(rect.height));
+        canvas.width = Math.floor(W * dpr);
+        canvas.height = Math.floor(H * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
 
       function rand(a,b){ return a + Math.random()*(b-a); }
 
       function resetBlobs(){
-        const wordsAttr = (canvas.getAttribute('data-words')||'').trim();
+        const wordsAttr = (canvas.getAttribute('data-words') || '').trim();
         const words = wordsAttr ? wordsAttr.split('|').map(s=>s.trim()).filter(Boolean) : [];
-        blobs = Array.from({length:CNT}, (_,i)=>({
-          x: rand(0, W/dpr), y: rand(0, H/dpr), r: rand(80, 170),
-          vx: rand(-0.25, 0.25), vy: rand(-0.18, 0.18), hue: i%2===0 ? 210 : 175,
-          alpha: rand(0.28, 0.4), label: words.length ? words[i % words.length] : null, phase: rand(0, Math.PI*2)
-        }));
-      }, (_,i)=>({
-          x: rand(0, W/dpr), y: rand(0, H/dpr), r: rand(70, 160),
-          vx: rand(-0.18, 0.18), vy: rand(-0.12, 0.12), hue: i%2===0 ? 270 : 175,
-          alpha: rand(0.28, 0.4)
+        blobs = Array.from({length: CNT}, (_, i) => ({
+          x: rand(0, W), y: rand(0, H), r: rand(80, 170),
+          vx: rand(-0.25, 0.25), vy: rand(-0.18, 0.18),
+          hue: i % 2 === 0 ? 210 : 175,
+          alpha: rand(0.28, 0.4),
+          label: words.length ? words[i % words.length] : null,
+          phase: rand(0, Math.PI * 2)
         }));
       }
 
-      function drawBlob(b){
-        // Cartoon cloud made from overlapping circles (Toy-Story-like)
-        const x=b.x, y=b.y, r=b.r*0.6; // base size
-        const p = [
+      function drawCloud(x, y, r) {
+        const parts = [
           {dx:0, dy:0, dr:r*0.85},
           {dx:-r*0.6, dy:r*0.05, dr:r*0.65},
-          {dx:r*0.55, dy:r*0.0, dr:r*0.6},
+          {dx:r*0.55, dy:0, dr:r*0.6},
           {dx:-r*0.2, dy:-r*0.45, dr:r*0.55},
-          {dx:r*0.2, dy:-r*0.5, dr:r*0.5},
+          {dx:r*0.2, dy:-r*0.5, dr:r*0.5}
         ];
-        // Shadow
+
+        // shadow
         ctx.save();
-        ctx.filter='blur(6px)';
-        ctx.globalAlpha = 0.35;
-        ctx.fillStyle = 'rgba(0,0,0,0.5)';
+        ctx.filter = 'blur(6px)';
+        ctx.globalAlpha = 0.25;
+        ctx.fillStyle = '#000';
         ctx.beginPath();
-        for (const c of p) { ctx.moveTo(x+c.dx+c.dr, y+c.dy); ctx.arc(x+c.dx, y+c.dy, c.dr, 0, Math.PI*2); }
+        for (const c of parts) { ctx.moveTo(x+c.dx+c.dr, y+c.dy); ctx.arc(x+c.dx, y+c.dy, c.dr, 0, Math.PI*2); }
         ctx.fill();
         ctx.restore();
 
-        // Fill
-        ctx.fillStyle = 'rgba(255,255,255,0.25)';
+        // fill
+        ctx.fillStyle = 'rgba(255,255,255,0.3)';
         ctx.beginPath();
-        for (const c of p) { ctx.moveTo(x+c.dx+c.dr, y+c.dy); ctx.arc(x+c.dx, y+c.dy, c.dr, 0, Math.PI*2); }
+        for (const c of parts) { ctx.moveTo(x+c.dx+c.dr, y+c.dy); ctx.arc(x+c.dx, y+c.dy, c.dr, 0, Math.PI*2); }
         ctx.fill();
-        // Stroke
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = 'rgba(255,255,255,0.8)';
-        ctx.stroke();
 
-        // Soft color glow that matches the theme hues
-        const g = ctx.createRadialGradient(x, y, r*0.2, x, y, r*1.4);
-        g.addColorStop(0, `hsla(${b.hue}, 90%, 70%, ${b.alpha*0.9})`);
+        // outline
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = 'rgba(255,255,255,0.85)';
+        ctx.stroke();
+      }
+
+      function drawBlob(b){
+        const r = b.r * 0.6;
+        drawCloud(b.x, b.y, r);
+
+        // glow
+        const g = ctx.createRadialGradient(b.x, b.y, r*0.2, b.x, b.y, r*1.4);
+        g.addColorStop(0, `hsla(${b.hue},90%,70%,${b.alpha})`);
         g.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.save();
         ctx.globalCompositeOperation = 'lighter';
         ctx.fillStyle = g;
         ctx.beginPath();
-        ctx.arc(x, y, r*1.4, 0, Math.PI*2);
+        ctx.arc(b.x, b.y, r*1.4, 0, Math.PI*2);
         ctx.fill();
         ctx.restore();
 
-        // Word label
         if (b.label){
-          const tAlpha = 0.6 + 0.4*Math.sin(b.phase);
+          const tAlpha = 0.6 + 0.4 * Math.sin(b.phase);
           ctx.save();
           ctx.globalAlpha = tAlpha;
           ctx.fillStyle = 'rgba(255,255,255,0.95)';
           ctx.font = `600 ${Math.max(12, r*0.35)}px Inter, system-ui, sans-serif`;
-          ctx.textAlign='center'; ctx.textBaseline='middle';
-          ctx.shadowColor='rgba(0,0,0,0.4)'; ctx.shadowBlur=8; ctx.shadowOffsetY=2;
-          ctx.fillText(b.label, x, y - r*0.05);
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.shadowColor = 'rgba(0,0,0,0.4)';
+          ctx.shadowBlur = 8;
+          ctx.shadowOffsetY = 2;
+          ctx.fillText(b.label, b.x, b.y - r*0.05);
           ctx.restore();
         }
-      }, 90%, 65%, `;
-        g.addColorStop(0, col + (b.alpha*1.2) + ')');
-        g.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI*2); ctx.fill();
       }
 
       function render(){
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        ctx.save(); ctx.filter = 'blur(16px)'; ctx.globalCompositeOperation = 'lighter';
+        ctx.clearRect(0, 0, canvas.width/dpr, canvas.height/dpr);
         for(const b of blobs){ drawBlob(b); }
-        ctx.restore();
       }
 
-      function tick(){
+      function step(){
         render();
         for(const b of blobs){
-          b.x += b.vx; b.y += b.vy; b.phase += 0.008; // text fade
-          if (b.x < -b.r) b.x = canvas.width/dpr + b.r;
-          if (b.x > canvas.width/dpr + b.r) b.x = -b.r;
-          if (b.y < -b.r) b.y = canvas.height/dpr + b.r;
-          if (b.y > canvas.height/dpr + b.r) b.y = -b.r;
+          b.x += b.vx; b.y += b.vy; b.phase += 0.008;
+          if (b.x < -b.r) b.x = W + b.r;
+          if (b.x > W + b.r) b.x = -b.r;
+          if (b.y < -b.r) b.y = H + b.r;
+          if (b.y > H + b.r) b.y = -b.r;
         }
-        if (running) raf = requestAnimationFrame(tick);
-      }
-        if (running) raf = requestAnimationFrame(tick);
+        if (running) raf = requestAnimationFrame(step);
       }
 
-      function play(){ if (!running){ running = true; toggleBtn.textContent = 'Pause motion'; raf = requestAnimationFrame(tick); } }
-      function pause(){ running = false; toggleBtn.textContent = 'Play motion'; if (raf) cancelAnimationFrame(raf); render(); }
+      function play(){ if (!running){ running = true; if (toggleBtn) toggleBtn.textContent = 'Pause motion'; raf = requestAnimationFrame(step); } }
+      function pause(){ running = false; if (toggleBtn) toggleBtn.textContent = 'Play motion'; if (raf) cancelAnimationFrame(raf); render(); }
 
-      toggleBtn?.addEventListener('click', ()=> running ? pause() : play());
-      refreshBtn?.addEventListener('click', ()=>{ resetBlobs(); render(); });
+      if (toggleBtn) toggleBtn.addEventListener('click', ()=> running ? pause() : play());
+      if (refreshBtn) refreshBtn.addEventListener('click', ()=>{ resetBlobs(); render(); });
 
-      window.addEventListener('resize', ()=>{ resize(); if (running) { /* will redraw next tick */ } else { render(); } });
+      window.addEventListener('resize', ()=>{ resize(); if (running) { /* next frame updates */ } else { render(); } });
 
       function init(){ resize(); resetBlobs(); if (running) play(); else pause(); }
       init();
