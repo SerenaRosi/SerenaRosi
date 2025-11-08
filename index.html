@@ -118,22 +118,6 @@
     .pensatoio-controls { position: absolute; top: 10px; right: 10px; display:flex; gap:8px; }
     .pensatoio-controls .btn { padding:8px 10px; box-shadow:none; }
     @media (max-width: 640px) { #pensatoio-canvas { height: 300px; } }
-    /* Vintage Game (Snake) styles */
-    #game { padding: 48px 0; }
-    .game-wrap { display:grid; grid-template-columns: auto 1fr; gap:18px; align-items:start; }
-    @media (max-width: 900px){ .game-wrap { grid-template-columns: 1fr; } }
-    #platformer-canvas { width: 640px; height: 360px; background:#111317; border-radius:12px; border:1px solid var(--border); image-rendering: pixelated; }
-    .hud { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
-    .stat { padding:8px 12px; border:1px solid var(--border); border-radius:10px; background: var(--panel); }
-    .pad { display:grid; grid-template-areas: 
-      ". up ." 
-      "left none right"
-      ". down ."; gap:8px; }
-    .pad button { width:50px; height:50px; border-radius:10px; border:1px solid var(--border); background: var(--card); color:var(--text); }
-    .pad .up { grid-area: up; }
-    .pad .down { grid-area: down; }
-    .pad .left { grid-area: left; }
-    .pad .right { grid-area: right; }
 </style>
 </head>
 <body>
@@ -153,7 +137,6 @@
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#pensatoio">Pensatoio</a>
-        <a href="#game">Game</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -334,30 +317,6 @@
       </div>
     </section>
 
-    <section id="game" class="section">
-      <h2>Vintage Game — Mini Platformer</h2>
-      <p class="sub">Arrow keys to move (← →), jump with ↑ (or W). Pause with <kbd>Space</kbd>. Reach the flag!</p>
-      <div class="game-wrap">
-        <canvas id="platformer-canvas" width="320" height="320" aria-label="Snake game canvas"></canvas>
-        <div class="panel" style="padding:16px;">
-          <div class="hud">
-            <div class="stat">Score: <strong id="score">0</strong></div>
-            <div class="stat">High: <strong id="high">0</strong></div>
-            <button class="btn" id="game-toggle" type="button">Pause</button>
-            <button class="btn ghost" id="game-restart" type="button">Restart</button>
-          </div>
-          <div style="margin-top:14px;">
-            <div class="pad" aria-label="D‑pad controls">
-              <button class="up" data-dir="0,-1">▲</button>
-              <button class="left" data-dir="-1,0">◀</button>
-              <button class="right" data-dir="1,0">▶</button>
-              <button class="down" data-dir="0,1">▼</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <footer class="footer">
       <div class="container">
         © <span id="year"></span> Your Name — Built with vanilla HTML/CSS. <span class="sr-only">End of website</span>
@@ -514,215 +473,6 @@
       function init(){ resize(); resetBlobs(); if (running) play(); else pause(); }
       init();
     })();
-  
-
-    // === Vintage Game: Snake (retro, self‑contained) ===
-    (function snakeGame(){
-      (function platformer(){
-        var canvas = document.getElementById('platformer-canvas');
-        if (!canvas) return;
-        var ctx = canvas.getContext('2d');
-        var scoreEl = document.getElementById('score');
-        var highEl = document.getElementById('high');
-        var toggleBtn = document.getElementById('game-toggle');
-        var restartBtn = document.getElementById('game-restart');
-        var pad = document.querySelector('#game .pad');
-
-        // --- Tiny Platformer (syntax-safe, ES5) ---
-        var TILE = 32; // px per tile
-        canvas.width = 640; canvas.height = 360;
-
-        // Level map ('.'=empty, '#'=ground, '='=platform, '*'=coin, 'F'=flag)
-        var MAP = [
-          "...........................................................",
-          "..........................................*.................",
-          "..............................==............................",
-          "..............*............................................",
-          "..........====...............==.............*...............",
-          "..........................................................F",
-          "....*...............==......................====...........",
-          "..............==.................................*.........",
-          ".................*.............==..........................",
-          "##############################################..###########",
-          "##############################################..###########"
-        ];
-
-        var W = MAP[0].length * TILE;
-        var H = MAP.length * TILE;
-
-        // Player
-        var player = { x: TILE*2, y: H-3*TILE, w: 22, h: 28, vx: 0, vy: 0, onGround: false, facing: 1 };
-        var coins = 0;
-        var high = Number(localStorage.getItem('platHigh')||0); if (highEl) highEl.textContent = String(high);
-        var running = true, over = false, won = false, last = 0;
-
-        // Input
-        var keys = { left:false, right:false };
-        window.addEventListener('keydown', function(e){
-          var k = (e.key||'').toLowerCase();
-          if (k==='arrowleft' || k==='a') keys.left = true;
-          if (k==='arrowright' || k==='d') keys.right = true;
-          if ((k==='arrowup' || k==='w') && player.onGround){ player.vy = -10.5; player.onGround=false; }
-          if (k===' ') { running = !running; if (toggleBtn) toggleBtn.textContent = running ? 'Pause' : 'Play'; }
-        });
-        window.addEventListener('keyup', function(e){
-          var k = (e.key||'').toLowerCase();
-          if (k==='arrowleft' || k==='a') keys.left = false;
-          if (k==='arrowright' || k==='d') keys.right = false;
-        });
-
-        if (toggleBtn) toggleBtn.addEventListener('click', function(){ running = !running; toggleBtn.textContent = running ? 'Pause' : 'Play'; });
-        if (restartBtn) restartBtn.addEventListener('click', function(){ reset(); });
-
-        if (pad) pad.addEventListener('click', function(e){
-          var t = e.target; while (t && t !== pad && !t.getAttribute('data-dir')) t = t.parentNode;
-          if (!t || t===pad) return;
-          var d = t.getAttribute('data-dir');
-          if (d==='-1,0'){ keys.left = true; setTimeout(function(){ keys.left=false; }, 100); }
-          if (d==='1,0'){ keys.right = true; setTimeout(function(){ keys.right=false; }, 100); }
-          if (d==='0,-1' && player.onGround){ player.vy = -10.5; player.onGround=false; }
-        });
-
-        function tileAt(px, py){
-          if (px<0||py<0||px>=W||py>=H) return '#';
-          var tx = Math.floor(px / TILE), ty = Math.floor(py / TILE);
-          var row = MAP[ty];
-          return row ? row.charAt(tx) : '#';
-        }
-        function setTile(tx, ty, ch){
-          var row = MAP[ty].split(''); row[tx] = ch; MAP[ty] = row.join('');
-        }
-
-        function collideRect(x,y,w,h, vx, vy){
-          // Horizontal
-          x += vx;
-          var left = Math.floor(x / TILE); var right = Math.floor((x+w-1)/TILE);
-          var top = Math.floor(y / TILE); var bottom = Math.floor((y+h-1)/TILE);
-          var ty;
-          if (vx>0){
-            for(ty=top; ty<=bottom; ty++){
-              var t1 = tileAt((right)*TILE, ty*TILE);
-              if (t1==='#' || t1==='='){ x = right*TILE - w; vx = 0; break; }
-            }
-          } else if (vx<0){
-            for(ty=top; ty<=bottom; ty++){
-              var t2 = tileAt((left)*TILE, ty*TILE);
-              if (t2==='#' || t2==='='){ x = (left+1)*TILE; vx = 0; break; }
-            }
-          }
-          // Vertical
-          y += vy; left = Math.floor(x / TILE); right = Math.floor((x+w-1)/TILE);
-          top = Math.floor(y / TILE); bottom = Math.floor((y+h-1)/TILE);
-          var onGround=false, txi;
-          if (vy>0){ // falling
-            for(txi=left; txi<=right; txi++){
-              var t3 = tileAt(txi*TILE, bottom*TILE);
-              if (t3==='#' || t3==='='){ y = bottom*TILE - h; vy = 0; onGround = true; break; }
-            }
-          } else if (vy<0){ // jumping
-            for(txi=left; txi<=right; txi++){
-              var t4 = tileAt(txi*TILE, top*TILE);
-              if (t4==='#' || t4==='='){ y = (top+1)*TILE; vy = 0; break; }
-            }
-          }
-          return {x:x,y:y,vx:vx,vy:vy,onGround:onGround};
-        }
-
-        function collect(){
-          var cx1 = Math.floor(player.x / TILE), cy1 = Math.floor(player.y / TILE);
-          var cx2 = Math.floor((player.x+player.w-1) / TILE), cy2 = Math.floor((player.y+player.h-1) / TILE);
-          var ty, tx;
-          for (ty=cx1; ty<=cx2; ty++) {}
-          for (ty=cy1; ty<=cy2; ty++){
-            for (tx=cx1; tx<=cx2; tx++){
-              var row = MAP[ty]; if (!row) continue;
-              var ch = row.charAt(tx);
-              if (ch==='*'){ setTile(tx,ty,'.'); coins++; if (scoreEl) scoreEl.textContent = String(coins); if (coins>high){ high=coins; localStorage.setItem('platHigh', String(high)); if (highEl) highEl.textContent = String(high); } }
-              if (ch==='F'){ won = true; running = false; if (toggleBtn) toggleBtn.textContent = 'Play'; }
-            }
-          }
-        }
-
-        function draw(){
-          // Sky background
-          ctx.fillStyle = '#4FB8FF'; ctx.fillRect(0,0,canvas.width,canvas.height);
-          // Camera
-          var camX = Math.max(0, Math.min(player.x - canvas.width/2, W - canvas.width));
-          ctx.save();
-          ctx.translate(-camX, 0);
-
-          // Tiles
-          var y, x; var px, py, t;
-          for (y=0; y<MAP.length; y++){
-            for (x=0; x<MAP[y].length; x++){
-              t = MAP[y].charAt(x);
-              px = x*TILE; py = y*TILE;
-              if (t==='#'){ ctx.fillStyle = '#0b0c10'; ctx.fillRect(px,py,TILE,TILE); ctx.strokeStyle='#1a1d24'; ctx.strokeRect(px+0.5,py+0.5,TILE-1,TILE-1); }
-              else if (t==='='){ ctx.fillStyle = '#3dd9d6'; ctx.fillRect(px,py+8,TILE,TILE-8); }
-              else if (t==='*'){ ctx.fillStyle = '#ffd166'; roundedRect(ctx, px+8, py+8, TILE-16, TILE-16, 6, true); }
-              else if (t==='F'){ ctx.fillStyle = '#ffffff'; ctx.fillRect(px+TILE/2-2, py-10, 4, TILE); ctx.fillStyle = '#7c5cff'; ctx.fillRect(px+TILE/2+2, py+4, 14, 10); }
-            }
-          }
-
-          // Player
-          ctx.fillStyle = '#7c5cff';
-          roundedRect(ctx, player.x, player.y, player.w, player.h, 6, true);
-
-          ctx.restore();
-
-          if (over){ drawOverlay('Game Over - press Restart'); }
-          else if (won){ drawOverlay('You reached the flag!'); }
-        }
-
-        function drawOverlay(text){
-          ctx.save(); ctx.fillStyle='rgba(0,0,0,0.4)'; ctx.fillRect(0,0,canvas.width,canvas.height);
-          ctx.fillStyle='#fff'; ctx.font='700 20px Inter, system-ui, sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
-          ctx.fillText(text, canvas.width/2, canvas.height/2); ctx.restore();
-        }
-
-        function roundedRect(c,x,y,w,h,r,fill){
-          c.beginPath();
-          c.moveTo(x+r,y);
-          c.arcTo(x+w,y,x+w,y+h,r);
-          c.arcTo(x+w,y+h,x,y+h,r);
-          c.arcTo(x,y+h,x,y,r);
-          c.arcTo(x,y,x+w,y,r);
-          if (fill) c.fill(); else c.stroke();
-        }
-
-        function reset(){
-          coins = 0; if (scoreEl) scoreEl.textContent = String(coins); won=false; over=false;
-          player.x = TILE*2; player.y = H-3*TILE; player.vx=0; player.vy=0; player.onGround=false; running=true; if (toggleBtn) toggleBtn.textContent='Pause';
-        }
-
-        function step(ts){
-          if (!last) last = ts; var dt = ts - last; var STEPS = 1000/60;
-          if (running && !over && !won && dt >= STEPS){
-            last = ts;
-            // physics
-            var ACC = 0.6, MAXS = 3.2, GRAV = 0.55;
-            if (keys.left){ player.vx -= ACC; player.facing=-1; }
-            if (keys.right){ player.vx += ACC; player.facing=1; }
-            player.vx *= 0.88; // friction
-            if (player.vx > MAXS) player.vx = MAXS; if (player.vx < -MAXS) player.vx = -MAXS;
-            player.vy += GRAV; if (player.vy > 10) player.vy = 10;
-
-            // collisions
-            var r = collideRect(player.x, player.y, player.w, player.h, player.vx, 0); player.x = r.x; player.vx = r.vx;
-            r = collideRect(player.x, player.y, player.w, player.h, 0, player.vy); player.y = r.y; player.vy = r.vy; player.onGround = r.onGround;
-            collect();
-          }
-          draw();
-          requestAnimationFrame(step);
-        }
-
-        reset();
-        requestAnimationFrame(step);
-      })();
-      }
-
-      reset();
-      requestAnimationFrame(step);
   </script>
 </body>
 </html>
