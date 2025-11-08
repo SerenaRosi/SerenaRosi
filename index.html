@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Portfolio</title>
+  <meta name="description" content="Portfolio of Your Name: projects, experience, and contact." />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --panel: #111317;
+      --text: #e8ecf1;
+      --muted: #a7b0bb;
+      --accent: #7c5cff;
+      --accent-2: #3dd9d6;
+      --ring: rgba(124, 92, 255, .4);
+      --card: #0f1115;
+      --border: #1a1d24;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7f8fb;
+        --panel: #ffffff;
+        --text: #0e1015;
+        --muted: #5d6b7b;
+        --accent: #5d3bff;
+        --accent-2: #0fbfb7;
+        --ring: rgba(93, 59, 255, .25);
+        --card: #ffffff;
+        --border: #e8ecf1;
+        --shadow: 0 10px 30px rgba(0,0,0,.08);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(124,92,255,.12), transparent),
+                  radial-gradient(900px 500px at -10% 20%, rgba(61,217,214,.10), transparent),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1100px, 92vw); margin: 0 auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 80%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; gap: 16px; padding: 14px 0; }
+    .brand { font-weight: 800; letter-spacing: .3px; display:flex; align-items:center; gap:10px; }
+    .badge { display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--border); border-radius:999px; font-size:12px; color:var(--muted); }
+    .dot { width:8px; height:8px; border-radius:999px; background:linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow:0 0 0 3px var(--ring); }
+    .links { display:flex; gap: 14px; }
+    .links a { padding:8px 12px; border-radius:10px; color:var(--muted); border:1px solid transparent; }
+    .links a:hover { color:var(--text); border-color:var(--border); }
+
+    .hero { display:grid; grid-template-columns: 1.2fr .8fr; gap: 32px; padding: 64px 0 28px; align-items: center; }
+    .hero h1 { font-size: clamp(34px, 5vw, 52px); line-height:1.1; margin: 0 0 12px; letter-spacing: -.02em; }
+    .hero p { color: var(--muted); font-size: clamp(15px, 2.3vw, 18px); }
+
+    .actions { display:flex; gap:12px; margin-top: 22px; flex-wrap: wrap; }
+    .btn {
+      display:inline-flex; align-items:center; gap:10px; padding:12px 16px; border-radius:12px; border:1px solid var(--border);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--panel) 86%, transparent), color-mix(in srgb, var(--panel) 94%, transparent));
+      color: var(--text); font-weight: 600; box-shadow: var(--shadow); transition: transform .08s ease, border-color .2s; will-change: transform;
+    }
+    .btn:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 35%, var(--border)); }
+    .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); border: none; box-shadow: 0 10px 30px rgba(124,92,255,.35); }
+    .btn.ghost { background: transparent; border-color: var(--border); }
+
+    .card { background: var(--card); border:1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow); }
+    .panel { background: var(--panel); border:1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow); }
+
+    .grid { display:grid; gap: 18px; }
+    .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } .grid.cols-3, .grid.cols-4 { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) { .grid.cols-3, .grid.cols-4, .grid.cols-2 { grid-template-columns: 1fr; } }
+
+    .section { padding: 48px 0; }
+    .section h2 { font-size: 26px; margin: 0 0 16px; }
+    .section .sub { color: var(--muted); margin-top:-6px; }
+
+    .tag { font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); color:var(--muted); }
+    .tags { display:flex; gap:8px; flex-wrap: wrap; }
+
+    .project-card { position: relative; overflow: clip; display:flex; flex-direction: column; }
+    .project-thumb { aspect-ratio: 16/9; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, var(--panel)), color-mix(in srgb, var(--accent-2) 18%, var(--panel))); border-bottom:1px solid var(--border); display:grid; place-items:center; font-weight:700; letter-spacing:.06em; color: color-mix(in srgb, var(--text) 80%, transparent); }
+    .project-body { padding: 14px; display:flex; flex-direction: column; gap: 8px; }
+    .project-title { font-weight: 700; }
+    .project-desc { color: var(--muted); }
+    .project-links { display:flex; gap: 10px; margin-top: 6px; }
+
+    .about { display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
+    @media (max-width: 900px) { .about { grid-template-columns: 1fr; } }
+
+    .avatar { width: 120px; height: 120px; border-radius: 20px; background: linear-gradient(135deg,var(--accent),var(--accent-2)); box-shadow: var(--shadow); border: 6px solid color-mix(in srgb, var(--panel) 80%, transparent); }
+
+    .footer { padding: 24px 0 60px; color: var(--muted); font-size: 14px; text-align:center; }
+    .sr-only { position: absolute !important; clip: rect(1px, 1px, 1px, 1px); padding: 0 !important; border: 0 !important; height: 1px !important; width: 1px !important; overflow: hidden; }
+
+    /* Fancy focus ring */
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <!-- =============================
+       Quick Start: Replace the placeholders (Your Name, summary, links, projects)
+       Save this file as index.html and push to a GitHub repo. Enable GitHub Pages.
+       ============================= -->
+
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="Go to home">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Your Name</span>
+      </a>
+      <nav class="links" aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="container">
+    <section class="hero">
+      <div>
+        <div class="badge" role="note"><span class="dot" aria-hidden="true" style="box-shadow:none"></span> Open to opportunities</div>
+        <h1>Hi, I'm <span style="background:linear-gradient(135deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent;">Your Name</span> — a <span id="role">Developer</span> crafting clean, user‑centric products.</h1>
+        <p>Brief one‑liner about your focus and the kind of impact you create. Mention a couple of specialties or industries you love.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14m0 0l-7-7m7 7l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            View Projects
+          </a>
+          <a class="btn" href="resume.pdf" download>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Download Résumé
+          </a>
+          <a class="btn ghost" href="#contact">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10m18 0v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2m18 0H3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            Get in touch
+          </a>
+        </div>
+      </div>
+      <div class="panel" style="padding:18px; display:grid; grid-template-columns: auto 1fr; gap:18px; align-items:center;">
+        <img class="avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%237c5cff'/%3E%3Cstop offset='1' stop-color='%233dd9d6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' rx='24' fill='url(%23g)'/%3E%3C/svg%3E" alt="Avatar placeholder" />
+        <div>
+          <h3 style="margin:4px 0 6px;">Based in Your City</h3>
+          <p class="sub">Currently at <strong>Company</strong> or <em>seeking new role</em>. Previously built X at Y. Passionate about accessibility, performance, and delightful UX.</p>
+          <div class="tags" style="margin-top:8px;">
+            <span class="tag">JavaScript</span>
+            <span class="tag">React</span>
+            <span class="tag">Node</span>
+            <span class="tag">Design Systems</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Featured Projects</h2>
+      <p class="sub">A few things I’ve designed, coded, and shipped recently.</p>
+      <div class="grid cols-3">
+        <article class="card project-card">
+          <div class="project-thumb" aria-hidden="true">Project One</div>
+          <div class="project-body">
+            <div class="project-title">Project One — SaaS Dashboard</div>
+            <p class="project-desc">Responsive analytics dashboard with role‑based access and realtime charts. Improved time‑to‑insight by 35%.</p>
+            <div class="tags">
+              <span class="tag">React</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Recharts</span>
+            </div>
+            <div class="project-links">
+              <a class="btn" href="#" target="_blank" rel="noopener">Live</a>
+              <a class="btn ghost" href="#" target="_blank" rel="noopener">Source</a>
+            </div>
+          </div>
+        </article>
+        <article class="card project-card">
+          <div class="project-thumb" aria-hidden="true">Project Two</div>
+          <div class="project-body">
+            <div class="project-title">Project Two — Mobile App</div>
+            <p class="project-desc">Cross‑platform habit tracker with offline support and end‑to‑end encrypted sync.</p>
+            <div class="tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">Firebase</span>
+            </div>
+            <div class="project-links">
+              <a class="btn" href="#" target="_blank" rel="noopener">Case Study</a>
+              <a class="btn ghost" href="#" target="_blank" rel="noopener">Source</a>
+            </div>
+          </div>
+        </article>
+        <article class="card project-card">
+          <div class="project-thumb" aria-hidden="true">Project Three</div>
+          <div class="project-body">
+            <div class="project-title">Project Three — ML Prototype</div>
+            <p class="project-desc">Lightweight service to classify support tickets and auto‑route, cutting response times by 42%.</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">scikit‑learn</span>
+            </div>
+            <div class="project-links">
+              <a class="btn" href="#" target="_blank" rel="noopener">Demo</a>
+              <a class="btn ghost" href="#" target="_blank" rel="noopener">Source</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About</h2>
+      <div class="about">
+        <div class="panel" style="padding:18px;">
+          <h3 style="margin-top:0">A little background</h3>
+          <p>Write a short narrative about your journey, the types of teams you thrive in, and what motivates your work. Mention a couple of noteworthy achievements or metrics if you can.</p>
+          <ul>
+            <li>5+ years building delightful web apps</li>
+            <li>Shipped features to 1M+ users</li>
+            <li>Mentored 6 junior engineers</li>
+          </ul>
+        </div>
+        <div class="panel" style="padding:18px;">
+          <h3 style="margin-top:0">Experience highlights</h3>
+          <div class="grid cols-2">
+            <div>
+              <strong>Senior Engineer · Company A</strong>
+              <div class="sub">2023 — Present</div>
+              <p>Led migration to TypeScript monorepo, reduced CI time from 18m→6m. Owned design‑system rollout.</p>
+            </div>
+            <div>
+              <strong>Engineer · Company B</strong>
+              <div class="sub">2021 — 2023</div>
+              <p>Built core billing services and revamped onboarding flow, increasing activation by 12%.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <h2>Skills</h2>
+      <div class="grid cols-4">
+        <div class="card" style="padding:16px;">
+          <strong>Frontend</strong>
+          <p class="sub">React, TypeScript, Next.js, Vite, CSS, a11y</p>
+        </div>
+        <div class="card" style="padding:16px;">
+          <strong>Backend</strong>
+          <p class="sub">Node, Python, FastAPI, PostgreSQL, Redis</p>
+        </div>
+        <div class="card" style="padding:16px;">
+          <strong>DevOps</strong>
+          <p class="sub">Docker, CI/CD, Cloudflare, Vercel</p>
+        </div>
+        <div class="card" style="padding:16px;">
+          <strong>UX/Other</strong>
+          <p class="sub">Figma, Design Systems, Testing</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="panel" style="padding:18px; display:flex; flex-wrap: wrap; gap: 12px; align-items:center; justify-content:space-between;">
+        <div>
+          <p class="sub" style="margin:0">Have an opportunity, project, or just want to say hi?</p>
+          <a class="btn" href="mailto:you@example.com">you@example.com</a>
+        </div>
+        <div class="actions">
+          <a class="btn" href="https://github.com/yourhandle" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 00-3.79 23.4c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.61-4.04-1.61-.55-1.41-1.34-1.78-1.34-1.78-1.09-.75.08-.73.08-.73 1.2.08 1.83 1.24 1.83 1.24 1.07 1.83 2.82 1.3 3.51.99.11-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.9 0-1.3.47-2.37 1.24-3.2-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.22a11.5 11.5 0 016 0c2.29-1.54 3.3-1.22 3.3-1.22.66 1.65.25 2.87.12 3.17.77.83 1.24 1.9 1.24 3.2 0 4.59-2.81 5.6-5.49 5.9.43.37.81 1.1.81 2.22v3.29c0 .32.21.69.83.58A12 12 0 0012 .5z"/></svg>
+            GitHub
+          </a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/yourhandle" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zm7 0h3.8v2.2h.05C12.1 8.9 13.7 8 16 8c4 0 4.7 2.6 4.7 6V24h-4v-5.6c0-1.3 0-3-1.8-3s-2 1.4-2 2.9V24h-4V8z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        © <span id="year"></span> Your Name — Built with vanilla HTML/CSS. <span class="sr-only">End of website</span>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Tiny sprinkle of JS for niceties (safe for GitHub Pages)
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Optional: cycle roles in hero text
+    const roles = ["Developer", "Designer", "Engineer", "Problem‑solver"];
+    let i = 0; const el = document.getElementById('role');
+    setInterval(() => { i = (i + 1) % roles.length; el.textContent = roles[i]; }, 2500);
+  </script>
+</body>
+</html>
