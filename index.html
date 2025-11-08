@@ -118,6 +118,19 @@
     .pensatoio-controls { position: absolute; top: 10px; right: 10px; display:flex; gap:8px; }
     .pensatoio-controls .btn { padding:8px 10px; box-shadow:none; }
     @media (max-width: 640px) { #pensatoio-canvas { height: 300px; } }
+
+    /* Reaction Game (local, 24h leaderboard) */
+#game { padding: 48px 0; }
+.game-grid { display:grid; grid-template-columns: 1fr 360px; gap:18px; align-items:start; }
+@media (max-width: 900px){ .game-grid { grid-template-columns: 1fr; } }
+.react-card { height: 220px; border:1px solid var(--border); border-radius:14px; display:grid; place-items:center; cursor:pointer; user-select:none; box-shadow: var(--shadow); background: var(--card); }
+.react-card.wait { background: #2a2f39; color: #a7b0bb; }
+.react-card.ready { background: #4caf50; color: #0e1015; }
+.react-card.too-early { background: #ff5252; }
+.lb table { width: 100%; border-collapse: collapse; }
+.lb th, .lb td { text-align:left; padding:8px 6px; border-bottom:1px dashed var(--border); font-size:14px; }
+.lb .empty { color: var(--muted); font-style: italic; padding:8px; }
+
 </style>
 </head>
 <body>
@@ -137,6 +150,7 @@
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#pensatoio">Pensatoio</a>
+        <a href="#game">Game</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -316,6 +330,39 @@
         </div>
       </div>
     </section>
+<section id="game" class="section">
+  <h2>Game — Reaction Test</h2>
+  <p class="sub">Click the panel or press <kbd>Space</kbd> when it turns green. Lower is better. Enter your name to save your scores for 24 hours (stored locally in your browser).</p>
+  <div class="game-grid">
+    <div class="panel" style="padding:16px;">
+      <form id="rx-form" class="actions" style="margin-bottom:12px; gap:8px;">
+        <input id="rx-name" type="text" placeholder="Your name"
+               style="padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:var(--panel); color:var(--text); min-width:180px;" required />
+        <button class="btn" type="submit">Save name</button>
+        <button class="btn ghost" id="rx-clear" type="button">Clear scores</button>
+      </form>
+
+      <div id="rx-card" class="react-card wait" tabindex="0" role="button" aria-label="Reaction panel">
+        <div>
+          <div style="font-size:32px; font-weight:800; letter-spacing:.3px; text-align:center;">Wait...</div>
+          <div class="sub" style="text-align:center;">When it turns green, click or press Space</div>
+        </div>
+      </div>
+
+      <div class="hud" style="display:flex; gap:12px; margin-top:12px; flex-wrap:wrap;">
+        <div class="stat">Last: <strong id="rx-last">—</strong> ms</div>
+        <div class="stat">Best today: <strong id="rx-best">—</strong> ms</div>
+        <div class="stat">Attempts today: <strong id="rx-count">0</strong></div>
+      </div>
+    </div>
+
+    <div class="panel lb" style="padding:16px;">
+      <h3 style="margin:0 0 8px;">Today’s Leaderboard (this browser)</h3>
+      <div class="sub" style="margin-bottom:8px;">Top 10 scores saved for 24h. Clearing site data will remove them.</div>
+      <div id="rx-table-wrap"></div>
+    </div>
+  </div>
+</section>
 
     <footer class="footer">
       <div class="container">
@@ -473,6 +520,142 @@
       function init(){ resize(); resetBlobs(); if (running) play(); else pause(); }
       init();
     })();
+
+/* === Reaction Test Game with 24h local leaderboard === */
+(function reactionGame(){
+  var card = document.getElementById('rx-card'); if (!card) return;
+  var form = document.getElementById('rx-form');
+  var nameInput = document.getElementById('rx-name');
+  var clearBtn = document.getElementById('rx-clear');
+  var lastEl = document.getElementById('rx-last');
+  var bestEl = document.getElementById('rx-best');
+  var countEl = document.getElementById('rx-count');
+  var tableWrap = document.getElementById('rx-table-wrap');
+
+  var KEY = 'rx_scores_v1';
+  var NAMEKEY = 'rx_name_v1';
+  var DAY = 24*60*60*1000;
+  var timeout = null, startTime = 0, state = 'idle'; // idle|waiting|ready|locked
+
+  // restore name
+  var savedName = localStorage.getItem(NAMEKEY) || '';
+  nameInput.value = savedName;
+
+  function now(){ return Date.now(); }
+
+  function loadScores(){
+    var raw = localStorage.getItem(KEY);
+    var arr = raw ? JSON.parse(raw) : [];
+    var cutoff = now() - DAY;
+    // prune >24h old
+    arr = arr.filter(function(s){ return s.ts >= cutoff; });
+    localStorage.setItem(KEY, JSON.stringify(arr));
+    return arr;
+  }
+  function saveScore(name, ms){
+    var arr = loadScores();
+    arr.push({name:name||'Anon', ms:ms, ts: now()});
+    // keep only best 200 recent
+    arr.sort(function(a,b){ return a.ms - b.ms; });
+    if (arr.length>200) arr = arr.slice(0,200);
+    localStorage.setItem(KEY, JSON.stringify(arr));
+  }
+  function topList(){
+    var arr = loadScores();
+    arr.sort(function(a,b){ return a.ms - b.ms; });
+    return arr.slice(0,10);
+  }
+  function bestFor(name){
+    var arr = loadScores().filter(function(s){ return s.name===name; });
+    if (!arr.length) return null;
+    arr.sort(function(a,b){ return a.ms - b.ms; });
+    return arr[0].ms;
+  }
+  function countFor(name){
+    return loadScores().filter(function(s){ return s.name===name; }).length;
+  }
+  function renderTable(){
+    var rows = topList();
+    if (!rows.length){ tableWrap.innerHTML = '<div class="empty">No scores yet. Be the first! 🎯</div>'; return; }
+    var html = '<table><thead><tr><th>#</th><th>Name</th><th>Score (ms)</th><th>When</th></tr></thead><tbody>';
+    for (var i=0;i<rows.length;i++){
+      var s = rows[i];
+      var ago = Math.round((now()-s.ts)/60000); // minutes
+      html += '<tr><td>'+ (i+1) +'</td><td>'+ escapeHtml(s.name) +'</td><td>'+ s.ms +'</td><td>'+ (ago<=0?'now':(ago+'m ago')) +'</td></tr>';
+    }
+    html += '</tbody></table>';
+    tableWrap.innerHTML = html;
+  }
+  function escapeHtml(str){
+    return String(str).replace(/[&<>\"']/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]); });
+  }
+
+  function setState(s){
+    state = s;
+    if (s==='idle' || s==='waiting'){
+      card.className = 'react-card wait';
+      card.innerHTML = '<div><div style="font-size:32px; font-weight:800; letter-spacing:.3px; text-align:center;">Wait...</div><div class="sub" style="text-align:center;">When it turns green, click or press Space</div></div>';
+    } else if (s==='ready'){
+      card.className = 'react-card ready';
+      card.innerHTML = '<div><div style="font-size:36px; font-weight:800; letter-spacing:.3px; text-align:center;">GO!</div><div class="sub" style="text-align:center;">Tap or press Space now</div></div>';
+    } else if (s==='locked'){
+      card.className = 'react-card too-early';
+      card.innerHTML = '<div><div style="font-size:24px; font-weight:800; letter-spacing:.3px; text-align:center;">Too early!</div><div class="sub" style="text-align:center;">Wait for green</div></div>';
+    }
+  }
+
+  function schedule(){
+    clearTimeout(timeout);
+    setState('waiting');
+    timeout = setTimeout(function(){ startTime = now(); setState('ready'); }, 1200 + Math.random()*1800);
+  }
+
+  function handleAttempt(){
+    if (state==='waiting'){
+      // too early
+      setState('locked');
+      clearTimeout(timeout);
+      setTimeout(schedule, 800);
+      return;
+    }
+    if (state!=='ready') return;
+    var ms = now() - startTime;
+    lastEl.textContent = String(ms);
+    var nm = nameInput.value.trim() || 'Anon';
+    saveScore(nm, ms);
+    localStorage.setItem(NAMEKEY, nm);
+    var best = bestFor(nm); if (best !== null) bestEl.textContent = String(best);
+    countEl.textContent = String(countFor(nm));
+    renderTable();
+    setState('idle');
+    setTimeout(schedule, 800);
+  }
+
+  // events
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    localStorage.setItem(NAMEKEY, nameInput.value.trim());
+    var nm = nameInput.value.trim();
+    var best = bestFor(nm); if (best !== null) bestEl.textContent = String(best);
+    countEl.textContent = String(countFor(nm));
+  });
+  clearBtn.addEventListener('click', function(){
+    localStorage.removeItem(KEY);
+    renderTable(); bestEl.textContent='—'; countEl.textContent='0';
+  });
+  card.addEventListener('click', handleAttempt);
+  card.addEventListener('keydown', function(e){
+    if (e.code==='Space' || e.key===' '){ e.preventDefault(); handleAttempt(); }
+  });
+
+  // init
+  renderTable();
+  var nm = nameInput.value.trim();
+  if (nm){ var best = bestFor(nm); if (best !== null) bestEl.textContent = String(best); countEl.textContent = String(countFor(nm)); }
+  setState('idle');
+  setTimeout(schedule, 500);
+})();
+
   </script>
 </body>
 </html>
