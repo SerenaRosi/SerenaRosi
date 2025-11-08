@@ -1,142 +1,72 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Molecular Viewers • Demo</title>
-  <!-- Reuse your project stylesheet -->
-  <link rel="stylesheet" href="styles.css" />
-  <!-- Minimal fallback styles if your CSS doesn’t set heights -->
+  <title>Didactic Resources — Your Name</title>
+  <meta name="description" content="Didactic resources and molecular visualizations by Your Name." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --viewer-h: 70vh; }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 1rem; }
-    .tabs { display: flex; gap: .5rem; flex-wrap: wrap; }
-    .tab-btn { padding: .5rem .8rem; border-radius: 10px; border: 1px solid #ddd; cursor: pointer; background: #fff; }
-    .tab-btn.active { border-color: #555; }
-    .panes { position: relative; }
-    .pane { display: none; height: var(--viewer-h); border-radius: 14px; overflow: hidden; border: 1px solid #eee; background: #fafafa; }
-    .pane.active { display: block; }
-    .controls { display: flex; gap: .5rem; align-items: center; margin: 1rem 0; flex-wrap: wrap; }
-    .controls input[type="text"] { padding: .5rem .7rem; border: 1px solid #ccc; border-radius: 8px; }
-    .controls button { padding: .55rem .9rem; border-radius: 10px; border: none; background: #111; color: #fff; cursor: pointer; }
-    .note { font-size: .9rem; color: #666; }
+    :root {
+      --bg: #0b0c10;
+      --panel: #111317;
+      --text: #e8ecf1;
+      --muted: #a7b0bb;
+      --accent: #7c5cff;
+      --accent-2: #3dd9d6;
+      --border: #1a1d24;
+    }
+    body {
+      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6;
+    }
+    .container { width: min(1100px, 92vw); margin: 0 auto; padding: 40px 0; }
+    a { color: inherit; text-decoration: none; }
+    header { border-bottom: 1px solid var(--border); padding: 18px 0; margin-bottom: 28px; }
+    nav { display:flex; gap:14px; flex-wrap:wrap; }
+    nav a { color: var(--muted); border:1px solid transparent; padding:6px 10px; border-radius:8px; }
+    nav a:hover { color: var(--text); border-color: var(--border); }
+    h1, h2 { letter-spacing: -0.02em; }
+    .molstar-container { height: 600px; border: 1px solid var(--border); border-radius: 12px; overflow:hidden; }
   </style>
-  <!-- Mol* (Molstar) -->
-  <link rel="stylesheet" href="https://unpkg.com/molstar@5.3.0/build/viewer/molstar.css" />
-  <script src="https://unpkg.com/molstar@5.3.0/build/viewer/molstar.js"></script>
-  <!-- 3Dmol.js -->
-  <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
-  <!-- NGL Viewer -->
-  <script src="https://cdn.jsdelivr.net/npm/ngl@2.4.0/dist/ngl.js"></script>
+
+  <!-- Mol* Viewer dependencies -->
+  <script src="https://unpkg.com/molstar@latest/build/viewer/molstar.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/molstar@latest/build/viewer/molstar.css" />
 </head>
 <body>
-  <div class="wrap">
-    <h1>Molecular Graphics Viewers</h1>
-    <p class="note">Type a PDB ID (e.g., <code>1CRN</code>, <code>7BV2</code>) and load it in your preferred viewer. CSS is inherited from your site; only tiny inline styles are added for sizing.</p>
+  <header class="container">
+    <h1>Didactic Resources</h1>
+    <nav>
+      <a href="index.html">← Back to Home</a>
+    </nav>
+  </header>
 
-    <div class="controls">
-      <label for="pdbId"><strong>PDB ID</strong></label>
-      <input id="pdbId" type="text" value="1CRN" minlength="4" maxlength="10" spellcheck="false" />
-      <button id="loadBtn" type="button">Load Structure</button>
-      <span class="note">Switch tabs to compare Mol*, 3Dmol.js, and NGL.</span>
-    </div>
-
-    <div class="tabs" role="tablist">
-      <button class="tab-btn active" role="tab" data-pane="molstar-pane">Mol*</button>
-      <button class="tab-btn" role="tab" data-pane="threedmol-pane">3Dmol.js</button>
-      <button class="tab-btn" role="tab" data-pane="ngl-pane">NGL</button>
-    </div>
-
-    <div class="panes">
-      <div id="molstar-pane" class="pane active">
-        <div id="molstar-container" style="width:100%; height:100%"></div>
-      </div>
-      <div id="threedmol-pane" class="pane">
-        <div id="threedmol-container" style="width:100%; height:100%"></div>
-      </div>
-      <div id="ngl-pane" class="pane">
-        <div id="ngl-container" style="width:100%; height:100%"></div>
-      </div>
-    </div>
-  </div>
+  <main class="container">
+    <section>
+      <h2>Molecular Visualization</h2>
+      <p class="sub">Below is an embedded Mol* viewer for interactive exploration of molecular structures. Use the controls to rotate, zoom, and explore the 3D model.</p>
+      <div id="molstar-viewer" class="molstar-container"></div>
+    </section>
+  </main>
 
   <script>
-    // --- Tabs ---
-    const tabs = document.querySelectorAll('.tab-btn');
-    const panes = document.querySelectorAll('.pane');
-    tabs.forEach(btn => btn.addEventListener('click', () => {
-      tabs.forEach(b => b.classList.remove('active'));
-      panes.forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.pane).classList.add('active');
-      // some viewers need a resize after becoming visible
-      if (btn.dataset.pane === 'ngl-pane') stage.handleResize();
-      if (btn.dataset.pane === 'threedmol-pane') v3d.resize();
-    }));
+    document.addEventListener('DOMContentLoaded', function() {
+      const viewer = new Molstar.Viewer('molstar-viewer', {
+        layoutIsExpanded: true,
+        layoutShowControls: true,
+        layoutShowRemoteState: false,
+        layoutShowSequence: true,
+        layoutShowLog: false,
+        layoutShowLeftPanel: true,
+        viewportShowExpand: true
+      });
 
-    // --- Mol* ---
-    const molstarViewer = new molstar.Viewer('molstar-container', {
-      layoutIsExpanded: false,
-      layoutShowControls: true,
-      layoutShowSequence: false,
-      layoutShowLog: false,
-      layoutShowLeftPanel: false,
-      viewportShowExpand: true,
-      viewportShowAnimation: false,
-      pdbProvider: 'rcsb',
-      emdbProvider: 'rcsb'
+      // Load an example structure (can be changed to your PDB of choice)
+      viewer.loadPdbId('1cbs');
     });
-
-    async function loadMolstar(pdbId) {
-      await molstarViewer.clear();
-      await molstarViewer.loadPdb(pdbId);
-    }
-
-    // --- 3Dmol.js ---
-    const v3d = $3Dmol.createViewer(document.getElementById('threedmol-container'), { backgroundColor: 'white' });
-    function load3Dmol(pdbId) {
-      v3d.clear();
-      $3Dmol.download('pdb:' + pdbId, v3d, {}, function () {
-        v3d.setStyle({}, { cartoon: {} });
-        v3d.zoomTo();
-        v3d.render();
-      });
-    }
-
-    // --- NGL ---
-    const stage = new NGL.Stage('ngl-container');
-    function loadNGL(pdbId) {
-      stage.removeAllComponents();
-      stage.loadFile('rcsb://' + pdbId).then(function (comp) {
-        comp.addRepresentation('cartoon');
-        comp.autoView();
-      });
-    }
-
-    // --- Load button ---
-    const input = document.getElementById('pdbId');
-    const loadBtn = document.getElementById('loadBtn');
-    function currentPane() {
-      return document.querySelector('.pane.active').id;
-    }
-    function loadActiveViewer(pdbId) {
-      switch (currentPane()) {
-        case 'molstar-pane':
-          loadMolstar(pdbId);
-          break;
-        case 'threedmol-pane':
-          load3Dmol(pdbId);
-          break;
-        case 'ngl-pane':
-          loadNGL(pdbId);
-          break;
-      }
-    }
-    loadBtn.addEventListener('click', () => loadActiveViewer(input.value.trim()));
-    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') loadActiveViewer(input.value.trim()); });
-
-    // Initial demo load
-    loadMolstar(input.value.trim());
   </script>
 </body>
 </html>
