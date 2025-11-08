@@ -131,6 +131,19 @@
 .lb th, .lb td { text-align:left; padding:8px 6px; border-bottom:1px dashed var(--border); font-size:14px; }
 .lb .empty { color: var(--muted); font-style: italic; padding:8px; }
 
+    /* Jukebox styles */
+#jukebox { padding: 48px 0; }
+.jukebox { display:grid; grid-template-columns: 1fr 360px; gap:18px; align-items:start; }
+@media (max-width: 900px){ .jukebox { grid-template-columns: 1fr; } }
+.dropzone { border:2px dashed var(--border); border-radius:14px; padding:18px; text-align:center; color:var(--muted); background:var(--panel); }
+.dropzone.drag { border-color: var(--accent); color: var(--text); }
+.controls { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.controls button, .controls input[type="range"] { accent-color: var(--accent); }
+.tracklist { max-height: 280px; overflow:auto; border:1px solid var(--border); border-radius:12px; }
+.tracklist button { width:100%; text-align:left; background:transparent; border:0; padding:10px 12px; color:var(--text); }
+.tracklist button:hover { background: color-mix(in srgb, var(--panel) 90%, #ffffff 10%); }
+.tracklist .active { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+
 </style>
 </head>
 <body>
@@ -150,6 +163,7 @@
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#pensatoio">Pensatoio</a>
+        <a href="#jukebox">Jukebox</a>
         <a href="#game">Game</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -360,6 +374,35 @@
       <h3 style="margin:0 0 8px;">Today’s Leaderboard (this browser)</h3>
       <div class="sub" style="margin-bottom:8px;">Top 10 scores saved for 24h. Clearing site data will remove them.</div>
       <div id="rx-table-wrap"></div>
+    </div>
+  </div>
+</section>
+
+    <section id="jukebox" class="section">
+  <h2>Jukebox</h2>
+  <p class="sub">Drop audio files or choose from your device. Nothing is uploaded — playback is local in your browser.</p>
+  <div class="jukebox">
+    <div class="panel" style="padding:16px;">
+      <div id="dropzone" class="dropzone" tabindex="0">
+        Drag & drop songs (MP3/WAV/OGG) or
+        <label for="file-input" style="text-decoration:underline; cursor:pointer;">browse</label>.
+        <input id="file-input" type="file" accept="audio/*" multiple style="display:none" />
+      </div>
+      <div class="controls" style="margin-top:12px;">
+        <button class="btn" id="play" type="button">Play</button>
+        <button class="btn" id="pause" type="button">Pause</button>
+        <button class="btn" id="prev" type="button">Prev</button>
+        <button class="btn" id="next" type="button">Next</button>
+        <span class="stat">Time: <strong id="time">0:00</strong> / <strong id="dur">0:00</strong></span>
+        <input id="seek" type="range" min="0" max="1000" value="0" style="width:160px" />
+        <span class="stat">Vol</span>
+        <input id="vol" type="range" min="0" max="1" step="0.01" value="0.8" style="width:100px" />
+      </div>
+    </div>
+    <div class="panel" style="padding:16px;">
+      <h3 style="margin:0 0 8px;">Playlist (local)</h3>
+      <div id="tracklist" class="tracklist"></div>
+      <div class="sub" style="margin-top:8px;">Playlist lasts while the page is open. Local file paths aren’t saved for privacy.</div>
     </div>
   </div>
 </section>
@@ -675,6 +718,91 @@ arr = arr.filter(function(s){ return s.ts >= cutoff; });
     scheduleMidnightReset();
   }, msUntilMidnight);
 })();
+
+    <script>
+// === Jukebox (local files, no upload) ===
+(function jukebox(){
+  var fileInput = document.getElementById('file-input');
+  var dropzone = document.getElementById('dropzone');
+  if (!fileInput || !dropzone) return;
+
+  var playBtn = document.getElementById('play');
+  var pauseBtn = document.getElementById('pause');
+  var prevBtn = document.getElementById('prev');
+  var nextBtn = document.getElementById('next');
+  var seek = document.getElementById('seek');
+  var vol = document.getElementById('vol');
+  var timeEl = document.getElementById('time');
+  var durEl = document.getElementById('dur');
+  var listEl = document.getElementById('tracklist');
+
+  var audio = new Audio();
+  audio.preload = 'metadata';
+  audio.volume = parseFloat(vol.value || '0.8');
+
+  var tracks = []; // {name, url}
+  var index = -1;
+
+  function fmt(t){ t = isNaN(t)?0:Math.max(0,t); var m=Math.floor(t/60); var s=Math.floor(t%60); return m+':' + (s<10?'0'+s:s); }
+  function escapeHtml(str){ return String(str).replace(/[&<>\"']/g, function(c){ return ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;", "'":"&#39;" }[c]); }); }
+
+  function renderList(){
+    var html = '';
+    for (var i=0;i<tracks.length;i++){
+      var t = tracks[i];
+      html += '<button data-i="'+i+'"'+(i===index?' class="active"':'')+'>'+ (i===index?'▶ ':'') + escapeHtml(t.name) +'</button>';
+    }
+    listEl.innerHTML = html || '<div class="sub" style="padding:10px;">No tracks yet.</div>';
+  }
+
+  function addFiles(fileList){
+    var added = 0;
+    for (var i=0;i<fileList.length;i++){
+      var f = fileList[i];
+      if (!f.type || f.type.indexOf('audio')!==0) continue;
+      var url = URL.createObjectURL(f);
+      tracks.push({name:f.name, url:url}); added++;
+    }
+    if (added){ if (index===-1){ index=0; load(index); } renderList(); }
+  }
+
+  function load(i){
+    if (i<0 || i>=tracks.length) return;
+    index = i; audio.src = tracks[i].url; audio.play().catch(function(){});
+    renderList();
+  }
+
+  function next(){ if (!tracks.length) return; load((index+1)%tracks.length); }
+  function prev(){ if (!tracks.length) return; load((index-1+tracks.length)%tracks.length); }
+
+  // controls
+  playBtn.addEventListener('click', function(){ if (!tracks.length) return; audio.play(); });
+  pauseBtn.addEventListener('click', function(){ audio.pause(); });
+  nextBtn.addEventListener('click', next);
+  prevBtn.addEventListener('click', prev);
+  vol.addEventListener('input', function(){ audio.volume = parseFloat(vol.value||'0.8'); });
+  seek.addEventListener('input', function(){ if (audio.duration) audio.currentTime = (seek.value/1000)*audio.duration; });
+  audio.addEventListener('timeupdate', function(){ if (audio.duration){ seek.value = Math.floor((audio.currentTime/audio.duration)*1000); timeEl.textContent = fmt(audio.currentTime); durEl.textContent = fmt(audio.duration); } });
+  audio.addEventListener('ended', next);
+
+  listEl.addEventListener('click', function(e){
+    var b = e.target.closest ? e.target.closest('button[data-i]') : null;
+    if (!b) return; var i = parseInt(b.getAttribute('data-i'),10); load(i);
+  });
+
+  // drag & drop
+  function stop(e){ e.preventDefault(); e.stopPropagation(); }
+  ['dragenter','dragover','dragleave','drop'].forEach(function(ev){ dropzone.addEventListener(ev, stop); });
+  ['dragenter','dragover'].forEach(function(){ dropzone.addEventListener('dragenter', function(){ dropzone.classList.add('drag'); }); dropzone.addEventListener('dragover', function(){ dropzone.classList.add('drag'); }); });
+  ['dragleave','drop'].forEach(function(){ dropzone.addEventListener('dragleave', function(){ dropzone.classList.remove('drag'); }); dropzone.addEventListener('drop', function(){ dropzone.classList.remove('drag'); }); });
+  dropzone.addEventListener('drop', function(e){ var dt = e.dataTransfer; if (dt && dt.files) addFiles(dt.files); });
+  dropzone.addEventListener('click', function(){ fileInput.click(); });
+  fileInput.addEventListener('change', function(){ addFiles(fileInput.files); fileInput.value=''; });
+
+  // keyboard space toggles when dropzone focused
+  dropzone.addEventListener('keydown', function(e){ if (e.code==='Space' || e.key===' '){ e.preventDefault(); if (audio.paused) audio.play(); else audio.pause(); }});
+})();
+</script>
 
 
   </script>
