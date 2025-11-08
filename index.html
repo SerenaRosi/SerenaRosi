@@ -338,24 +338,28 @@
       const canvas = document.getElementById('pensatoio-canvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
+
+      // Controls & motion preference
       const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-      let running = !mq.matches;
       const toggleBtn = document.getElementById('pensatoio-toggle');
       const refreshBtn = document.getElementById('pensatoio-refresh');
+      let running = !mq.matches;
 
+      // Dimensions & DPR
       let dpr = Math.min(2, window.devicePixelRatio || 1);
-      let W = 0, H = 0;
-      let blobs = [];
-      let CNT = 12;
+      let W = 0, H = 0; // logical CSS pixels
       let raf = null;
+
+      // Cloud state
+      let blobs = [];
 
       function resize(){
         const rect = canvas.getBoundingClientRect();
         W = Math.max(1, Math.floor(rect.width));
         H = Math.max(1, Math.floor(rect.height));
-        canvas.width = Math.floor(W * dpr);
+        canvas.width  = Math.floor(W * dpr);
         canvas.height = Math.floor(H * dpr);
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // draw in CSS pixels
       }
 
       function rand(a,b){ return a + Math.random()*(b-a); }
@@ -364,59 +368,53 @@
         const wordsAttr = (canvas.getAttribute('data-words') || '').trim();
         const words = wordsAttr ? wordsAttr.split('|').map(s=>s.trim()).filter(Boolean) : [];
 
-        // --- Wallpaper tiling inspired by Toy Story ---
-        const spacing = 180; // px between clouds in grid
-        const jitter = 40;   // random offset so it doesn't look too uniform
+        // Wallpaper-ish layout (Toy Story inspiration)
+        const spacing = 180; // px
+        const jitter  = 40;  // px
         const cols = Math.max(3, Math.round(W / spacing));
         const rows = Math.max(2, Math.round(H / spacing));
-        CNT = cols * rows;
 
         blobs = [];
-        let idx = 0;
-        for (let r=0; r<rows; r++){
-          for (let c=0; c<cols; c++){
-            const baseX = (c + 0.5) * (W / cols);
-            const baseY = (r + 0.5) * (H / rows);
-            const offX = rand(-jitter, jitter);
-            const offY = rand(-jitter, jitter);
+        let i = 0;
+        for (let r = 0; r < rows; r++){
+          for (let c = 0; c < cols; c++){
+            const baseX = (c + 0.5) * (W / cols) + rand(-jitter, jitter);
+            const baseY = (r + 0.5) * (H / rows) + rand(-jitter, jitter);
             const size = rand(90, 170);
             blobs.push({
-              x: baseX + offX,
-              y: baseY + offY,
+              x: baseX,
+              y: baseY,
               r: size,
-              // slow left→right or right→left drift
               vx: rand(-0.15, 0.15) || 0.08,
-              vy: 0,
               hue: 200,
-              alpha: 0.35,
-              label: words.length ? words[idx % words.length] : null,
-              phase: rand(0, Math.PI * 2),
+              label: words.length ? words[i % words.length] : null,
+              phase: rand(0, Math.PI*2),
               wobble: rand(0.6, 1.2)
             });
-            idx++;
+            i++;
           }
         }
       }
 
-      function drawCloud(x, y, r) {
+      function drawCloud(x, y, r){
         const parts = [
-          {dx:0, dy:0, dr:r*0.85},
+          {dx:0,    dy:0,     dr:r*0.85},
           {dx:-r*0.6, dy:r*0.05, dr:r*0.65},
-          {dx:r*0.55, dy:0, dr:r*0.6},
-          {dx:-r*0.2, dy:-r*0.45, dr:r*0.55},
-          {dx:r*0.2, dy:-r*0.5, dr:r*0.5}
+          {dx:r*0.55, dy:0,     dr:r*0.60},
+          {dx:-r*0.2, dy:-r*0.45,dr:r*0.55},
+          {dx:r*0.20, dy:-r*0.50,dr:r*0.50}
         ];
-        // simple Toy-Story-like: pure white on blue, with soft bottom shadow for lift
+        // White puff
         ctx.save();
         ctx.beginPath();
-        for (const c of parts) { ctx.moveTo(x+c.dx+c.dr, y+c.dy); ctx.arc(x+c.dx, y+c.dy, c.dr, 0, Math.PI*2); }
+        for (const c of parts){ ctx.moveTo(x+c.dx+c.dr, y+c.dy); ctx.arc(x+c.dx, y+c.dy, c.dr, 0, Math.PI*2); }
         ctx.fillStyle = '#ffffff';
         ctx.fill();
-        // soft shadow
+        // Small drop shadow for lift
         ctx.globalAlpha = 0.25; ctx.filter = 'blur(3px)';
-        ctx.fillStyle = 'rgba(0,0,0,0.4)';
         ctx.beginPath();
-        for (const c of parts) { ctx.moveTo(x+c.dx+c.dr, y+c.dy + 4); ctx.arc(x+c.dx, y+c.dy + 4, c.dr, 0, Math.PI*2); }
+        for (const c of parts){ ctx.moveTo(x+c.dx+c.dr, y+c.dy+4); ctx.arc(x+c.dx, y+c.dy+4, c.dr, 0, Math.PI*2); }
+        ctx.fillStyle = 'rgba(0,0,0,0.35)';
         ctx.fill();
         ctx.restore();
       }
@@ -428,82 +426,49 @@
           const tAlpha = 0.55 + 0.45 * Math.sin(b.phase);
           ctx.save();
           ctx.globalAlpha = tAlpha;
-          ctx.fillStyle = 'rgba(0,0,0,0.6)';
-          ctx.font = `700 ${Math.max(12, r*0.33)}px Inter, system-ui, sans-serif`;
+          ctx.fillStyle = 'rgba(0,0,0,0.65)';
+          ctx.font = '700 ' + Math.max(12, r*0.33) + 'px Inter, system-ui, sans-serif';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
-          ctx.fillText(b.label, b.x, b.y - r*0.05);
-          ctx.restore();
-        }
-      }
-(b){
-        const r = b.r * 0.6;
-        drawCloud(b.x, b.y, r);
-
-        // glow
-        const g = ctx.createRadialGradient(b.x, b.y, r*0.2, b.x, b.y, r*1.4);
-        g.addColorStop(0, `hsla(${b.hue},90%,70%,${b.alpha})`);
-        g.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.save();
-        ctx.globalCompositeOperation = 'lighter';
-        ctx.fillStyle = g;
-        ctx.beginPath();
-        ctx.arc(b.x, b.y, r*1.4, 0, Math.PI*2);
-        ctx.fill();
-        ctx.restore();
-
-        if (b.label){
-          const tAlpha = 0.6 + 0.4 * Math.sin(b.phase);
-          ctx.save();
-          ctx.globalAlpha = tAlpha;
-          ctx.fillStyle = 'rgba(255,255,255,0.95)';
-          ctx.font = `600 ${Math.max(12, r*0.35)}px Inter, system-ui, sans-serif`;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.shadowColor = 'rgba(0,0,0,0.4)';
-          ctx.shadowBlur = 8;
-          ctx.shadowOffsetY = 2;
           ctx.fillText(b.label, b.x, b.y - r*0.05);
           ctx.restore();
         }
       }
 
       function render(){
-        // sky background matching Toy Story vibe
+        // Sky background
         ctx.save();
-        ctx.setTransform(1,0,0,1,0,0); // draw bg in CSS pixels
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#4FB8FF'; // sky blue
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+        ctx.clearRect(0,0,W,H);
+        ctx.fillStyle = '#4FB8FF';
+        ctx.fillRect(0,0,W,H);
         ctx.restore();
 
-        for(const b of blobs){ drawBlob(b); }
-      }
+        for (const b of blobs){ drawBlob(b); }
       }
 
       function step(){
         render();
-        const speedScale = 1; // tweak for faster/slower drift
-        for(const b of blobs){
-          b.x += b.vx * speedScale;
-          // gentle vertical wobble like a breeze
-          b.y += Math.sin(b.phase) * 0.2 * b.wobble;
+        for (const b of blobs){
+          b.x += b.vx;              // horizontal drift
+          b.y += Math.sin(b.phase) * 0.2 * b.wobble; // gentle bob
           b.phase += 0.01;
           if (b.x < -b.r) b.x = W + b.r;
           if (b.x > W + b.r) b.x = -b.r;
         }
         if (running) raf = requestAnimationFrame(step);
       }
-        if (running) raf = requestAnimationFrame(step);
-      }
 
-      function play(){ if (!running){ running = true; if (toggleBtn) toggleBtn.textContent = 'Pause motion'; raf = requestAnimationFrame(step); } }
-      function pause(){ running = false; if (toggleBtn) toggleBtn.textContent = 'Play motion'; if (raf) cancelAnimationFrame(raf); render(); }
+      function play(){
+        if (!running){ running = true; if (toggleBtn) toggleBtn.textContent = 'Pause motion'; raf = requestAnimationFrame(step); }
+      }
+      function pause(){
+        running = false; if (toggleBtn) toggleBtn.textContent = 'Play motion'; if (raf) cancelAnimationFrame(raf); render();
+      }
 
       if (toggleBtn) toggleBtn.addEventListener('click', ()=> running ? pause() : play());
       if (refreshBtn) refreshBtn.addEventListener('click', ()=>{ resetBlobs(); render(); });
-
-      window.addEventListener('resize', ()=>{ resize(); if (running) { /* next frame updates */ } else { render(); } });
+      window.addEventListener('resize', ()=>{ resize(); if (running) {/* next frame updates */} else { render(); } });
 
       function init(){ resize(); resetBlobs(); if (running) play(); else pause(); }
       init();
