@@ -90,86 +90,50 @@ Publication: [Bioinformatics paper](https://doi.org/10.1093/bioinformatics/btag0
 
 ### WORK IN PROGRESS 
 
-**Reproducible workflows for interpreting machine-learning predictions.**
+## 🧪 Work in progress
 
-I am developing explainability and evaluation pipelines for AI models used in molecular modelling and drug-target prediction.
+### Explainable AI for molecular models
 
-These workflows include:
+Reproducible pipelines to understand what machine-learning models use when making predictions on molecular systems.  
+Current focus: attribution methods, stability checks, faithfulness tests, benchmarking, and less hand-wavy ways to decide whether an explanation is actually useful.
 
-- attribution-based analyses
-- Integrated Gradients protocols
-- baseline comparison
-- stability analysis
-- faithfulness-oriented evaluation
-- automated benchmarking
-- reproducible result aggregation
+`Integrated Gradients` · `model evaluation` · `benchmarking` · `reproducibility`
 
 ---
 
-**Practical workflows for AI-based protein design tools.**
+### AI-assisted protein design workflows
 
-I have worked on integrating protein design models such as ProteinMPNN and LigandMPNN into practical modelling environments.
+Integration of protein design models into practical modelling workflows, including the annoying-but-important details: which residues are designable, which ones must stay fixed, how to run the model, parse the outputs, and bring generated sequences/structures back into the working environment.
 
-This work includes:
-
-- residue-selection logic
-- fixed/designable region handling
-- model execution wrappers
-- output parsing
-- generated sequence and structure reintegration
-- interface-oriented workflow design
+`ProteinMPNN` · `LigandMPNN` · `workflow design` · `output parsing`
 
 ---
 
-## Gene-editing and sequence-design software
+### AlPaCas and allele-specific genome editing
 
-### AlPaCas  
-**Web server and computational pipeline for allele-specific CRISPR/Cas design.**
-
-AlPaCas identifies mutation-derived PAMs and supports the design of allele-specific genome-editing strategies.
-
-Through this project, I worked on:
-
-- sequence analysis workflows
-- biological rule formalization
-- algorithmic scoring
-- ranked result generation
-- web-based result presentation
-- translation of biological constraints into usable software
+AlPaCas is a web server and computational pipeline for designing allele-specific CRISPR/Cas strategies.  
+In practice: start from a mutation, encode the biological constraints, search for usable designs, rank them, and make the result readable enough for people who do not want to inspect every guide by hand.
 
 Publication: [Nucleic Acids Research paper](https://doi.org/10.1093/nar/gkae419)
 
----
-
-### Base-editing design workflows  
-**Computational pipelines for exploring allele-specific base-editing strategies.**
-
-Recent work extends sequence-design logic toward base-editing scenarios, including editing-window analysis, bystander-risk evaluation, and guide-ranking strategies.
-
-This work includes:
-
-- guide RNA enumeration
-- editing-window mapping
-- CBE/ABE rule implementation
-- bystander-effect scoring
-- output ranking
-- interpretable reporting
+`sequence analysis` · `scoring logic` · `web server` · `gene editing`
 
 ---
 
-**Reproducible molecular simulation workflows for protein systems.**
+### Base-editing design workflows
 
-I develop and adapt molecular dynamics scripts for complex biomolecular systems, with attention to checkpointing, restart logic, reproducibility, and HPC execution.
+Extension of the same logic toward base editing: enumerate guides, map editing windows, check bystander effects, score the designs, and produce outputs that are useful before anyone starts ordering reagents.
 
-This work includes:
+`CBE/ABE` · `editing windows` · `bystander risk` · `guide ranking`
 
-- OpenMM simulation setup
-- checkpoint-based restart workflows
-- SLURM/HPC execution
-- trajectory analysis
-- custom parameter handling
-- simulation monitoring and debugging
+---
 
+### Molecular dynamics utilities
+
+Scripts for molecular dynamics simulations when they need to behave on real systems and real clusters.  
+Current obsession: checkpointing, clean restarts, SLURM jobs that survive the mood of the node, and analysis scripts that make trajectories easier to inspect.
+
+`OpenMM` · `SLURM` · `checkpointing` · `trajectory analysis`
 ---
 
 ## Utilities and learning resources
