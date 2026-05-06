@@ -15,8 +15,11 @@ Centre for Regenerative Medicine “Stefano Ferrari”
 University of Modena and Reggio Emilia  
 
 📫 Email: `serena.rosignoli@unimore.it`  
-🔗 LinkedIn: [Serena Rosignoli](LINK_PLACEHOLDER)  
-📚 Publications: [Google Scholar](LINK_PLACEHOLDER)
+🔗 LinkedIn: [Serena Rosignoli](https://www.linkedin.com/in/serenarosignoli97/)  
+📚 Publications: [Google Scholar](https://scholar.google.com/citations?user=tFQ9tMAAAAAJ&hl=it)
+
+
+Below is the build log. Reading it is optional; contacting me is probably faster.
 
 ---
 
@@ -130,6 +133,7 @@ Scripts for molecular dynamics simulations when they need to behave on real syst
 Current obsession: checkpointing, clean restarts, SLURM jobs that survive the mood of the node, and analysis scripts that make trajectories easier to inspect.
 
 `OpenMM` · `SLURM` · `checkpointing` · `trajectory analysis`
+
 ---
 
 ## Utilities and learning resources
