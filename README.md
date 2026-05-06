@@ -19,7 +19,9 @@ University of Modena and Reggio Emilia
 📚 Publications: [Google Scholar](https://scholar.google.com/citations?user=tFQ9tMAAAAAJ&hl=it)
 
 
-Below is the build log. Reading it is optional; contacting me is probably faster.
+Below is the build log, 'shopping-list' style. 
+Reading it, is optional.
+Contacting me, is faster.
 
 ---
 
