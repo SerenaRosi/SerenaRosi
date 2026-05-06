@@ -1,4 +1,4 @@
-# Serena Rosignoli 👋
+# Serena Rosignoli :paw_prints:
 
 **Computational biologist · Research software engineer**
 
