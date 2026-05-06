@@ -20,8 +20,6 @@ University of Modena and Reggio Emilia
 
 ---
 
-# Selected software projects
-
 ## PyMOL-based scientific software
 
 ### PyMod  
@@ -38,7 +36,7 @@ Through this project, I worked on:
 - automation of complex modelling protocols
 - making structural bioinformatics workflows accessible to non-specialist users
 
-Repository: [PyMod](LINK_PLACEHOLDER)
+Repository: [PyMod](https://github.com/pymodproject/pymod)
 
 ---
 
@@ -56,8 +54,8 @@ Through this project, I worked on:
 - docking protocol automation
 - usability-oriented scientific software development
 
-Repository: [DockingPie](LINK_PLACEHOLDER)  
-Publication: [Bioinformatics paper](LINK_PLACEHOLDER)
+Repository: [DockingPie](https://github.com/paiardin/DockingPie)  
+Publication: [Bioinformatics paper](https://doi.org/10.1093/bioinformatics/btac452)
 
 ---
 
@@ -74,8 +72,8 @@ Through this project, I worked on:
 - user-oriented analysis workflows
 - scientific plugin development
 
-Repository: [PyPCN](LINK_PLACEHOLDER)  
-Publication: [Bioinformatics paper](LINK_PLACEHOLDER)
+Repository: [PyPCN](https://github.com/pcnproject/PyPCN)  
+Publication: [Bioinformatics paper](https://doi.org/10.1093/bioinformatics/btad675)
 
 ---
 
@@ -86,21 +84,12 @@ Publication: [Bioinformatics paper](LINK_PLACEHOLDER)
 
 G4REP predicts human RNA G-quadruplex-binding proteins using sequence-based information and deep-learning models.
 
-Through this project, I worked on:
-
-- biological dataset curation
-- deep-learning model development
-- prediction pipeline design
-- model evaluation
-- interpretable output analysis
-- translation of model predictions into biological hypotheses
-
-Repository: [G4REP](LINK_PLACEHOLDER)  
-Publication: [Bioinformatics paper](LINK_PLACEHOLDER)
+Publication: [Bioinformatics paper](https://doi.org/10.1093/bioinformatics/btag088)
 
 ---
 
 ### WORK IN PROGRESS 
+
 **Reproducible workflows for interpreting machine-learning predictions.**
 
 I am developing explainability and evaluation pipelines for AI models used in molecular modelling and drug-target prediction.
