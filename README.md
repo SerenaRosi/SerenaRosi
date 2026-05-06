@@ -18,10 +18,9 @@ University of Modena and Reggio Emilia
 🔗 LinkedIn: [Serena Rosignoli](https://www.linkedin.com/in/serenarosignoli97/)  
 📚 Publications: [Google Scholar](https://scholar.google.com/citations?user=tFQ9tMAAAAAJ&hl=it)
 
-
-Below is the build log, 'shopping-list' style. 
-Reading it, is optional.
-Contacting me, is faster.
+**Below is the build log, 'shopping-list' style.** 
+**Reading it, is optional.**
+**Contacting me, is faster.**
 
 ---
 
