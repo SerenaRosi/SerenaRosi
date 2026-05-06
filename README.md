@@ -2,7 +2,6 @@
 
 **Computational biologist · Research software engineer**
 
-
 ## Where to find me
 
 Post-Doctoral Research Fellow  
