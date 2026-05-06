@@ -77,7 +77,16 @@ Publication: [Bioinformatics paper](https://doi.org/10.1093/bioinformatics/btad6
 
 ---
 
-## AI, deep learning, and model evaluation
+### AlPaCas: a tool for allele-specific genome editing
+
+AlPaCas is a web server and computational pipeline for designing allele-specific CRISPR/Cas strategies.  
+In practice: start from a mutation, encode the biological constraints, search for usable designs, rank them, and make the result readable enough for people who do not want to inspect every guide by hand.
+
+Publication: [Nucleic Acids Research paper](https://doi.org/10.1093/nar/gkae419)
+
+`sequence analysis` · `scoring logic` · `web server` · `gene editing`
+
+---
 
 ### G4REP  
 **Deep-learning framework for protein classification.**
@@ -89,8 +98,6 @@ Publication: [Bioinformatics paper](https://doi.org/10.1093/bioinformatics/btag0
 ---
 
 ### WORK IN PROGRESS 
-
-## 🧪 Work in progress
 
 ### Explainable AI for molecular models
 
@@ -106,17 +113,6 @@ Current focus: attribution methods, stability checks, faithfulness tests, benchm
 Integration of protein design models into practical modelling workflows, including the annoying-but-important details: which residues are designable, which ones must stay fixed, how to run the model, parse the outputs, and bring generated sequences/structures back into the working environment.
 
 `ProteinMPNN` · `LigandMPNN` · `workflow design` · `output parsing`
-
----
-
-### AlPaCas and allele-specific genome editing
-
-AlPaCas is a web server and computational pipeline for designing allele-specific CRISPR/Cas strategies.  
-In practice: start from a mutation, encode the biological constraints, search for usable designs, rank them, and make the result readable enough for people who do not want to inspect every guide by hand.
-
-Publication: [Nucleic Acids Research paper](https://doi.org/10.1093/nar/gkae419)
-
-`sequence analysis` · `scoring logic` · `web server` · `gene editing`
 
 ---
 
