@@ -1,11 +1,6 @@
 # Serena Rosignoli 👋
 
-**Computational biologist · Research software engineer · Tool builder**
-
-Mostly Python. Often PyMOL. Increasingly AI.  
-Always trying to turn messy research problems into usable tools.
-
-> I build for people who have better things to do than fight with fragmented workflows.
+**Computational biologist · Research software engineer **
 
 
 ## Where to find me
@@ -18,9 +13,10 @@ University of Modena and Reggio Emilia
 🔗 LinkedIn: [Serena Rosignoli](https://www.linkedin.com/in/serenarosignoli97/)  
 📚 Publications: [Google Scholar](https://scholar.google.com/citations?user=tFQ9tMAAAAAJ&hl=it)
 
-**Below is the build log, “shopping-list” style.**<br>
-**Reading it, optional.**<br>
-**Contacting me, faster.**
+
+Below is the “shopping-list” style of the things I've worked on, I know you do not really care, just contact me if curious.
+Random chats are the best. 
+
 
 ---
 
