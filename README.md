@@ -19,8 +19,8 @@ University of Modena and Reggio Emilia
 📚 Publications: [Google Scholar](https://scholar.google.com/citations?user=tFQ9tMAAAAAJ&hl=it)
 
 **Below is the build log, “shopping-list” style.**<br>
-**Reading it is optional.**<br>
-**Contacting me is faster.**
+**Reading it, optional.**<br>
+**Contacting me, faster.**
 
 ---
 
