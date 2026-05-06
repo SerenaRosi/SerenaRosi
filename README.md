@@ -104,8 +104,6 @@ These workflows include:
 - automated benchmarking
 - reproducible result aggregation
 
-Repository: [Explainable AI pipelines](LINK_PLACEHOLDER)
-
 ---
 
 ### Protein design model integration  
@@ -121,8 +119,6 @@ This work includes:
 - output parsing
 - generated sequence and structure reintegration
 - interface-oriented workflow design
-
-Repository: [Protein design workflows](LINK_PLACEHOLDER)
 
 ---
 
@@ -142,8 +138,7 @@ Through this project, I worked on:
 - web-based result presentation
 - translation of biological constraints into usable software
 
-Repository: [AlPaCas](LINK_PLACEHOLDER)  
-Publication: [Nucleic Acids Research paper](LINK_PLACEHOLDER)
+Publication: [Nucleic Acids Research paper](https://doi.org/10.1093/nar/gkae419)
 
 ---
 
@@ -161,13 +156,8 @@ This work includes:
 - output ranking
 - interpretable reporting
 
-Repository: [Base-editing workflows](LINK_PLACEHOLDER)
-
 ---
 
-## Molecular modelling and simulation workflows
-
-### OpenMM and molecular dynamics utilities  
 **Reproducible molecular simulation workflows for protein systems.**
 
 I develop and adapt molecular dynamics scripts for complex biomolecular systems, with attention to checkpointing, restart logic, reproducibility, and HPC execution.
@@ -180,8 +170,6 @@ This work includes:
 - trajectory analysis
 - custom parameter handling
 - simulation monitoring and debugging
-
-Repository: [Molecular dynamics workflows](LINK_PLACEHOLDER)
 
 ---
 
