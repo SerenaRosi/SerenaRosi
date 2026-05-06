@@ -106,7 +106,6 @@ These workflows include:
 
 ---
 
-### Protein design model integration  
 **Practical workflows for AI-based protein design tools.**
 
 I have worked on integrating protein design models such as ProteinMPNN and LigandMPNN into practical modelling environments.
