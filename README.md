@@ -13,7 +13,7 @@ University of Modena and Reggio Emilia
 📚 Publications: [Google Scholar](https://scholar.google.com/citations?user=tFQ9tMAAAAAJ&hl=it)
 
 
-**Below is the “shopping-list” style of the things I've worked on, I know you do not really care, just contact me if curious. **
+** Below is the “shopping-list” style of the things I've worked on, I know you do not really care, just contact me if curious. **
 
 
 ---
