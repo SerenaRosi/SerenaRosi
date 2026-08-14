@@ -7,6 +7,16 @@
   <i>A computational approach to biological modelling, scientific software, and AI.</i>
 </p>
 
+<p align="center">
+  <a href="mailto:serena.rosignoli@unimore.it">Email</a> ·
+  <a href="https://www.linkedin.com/in/serenarosignoli97/">LinkedIn</a> ·
+  <a href="https://scholar.google.com/citations?user=tFQ9tMAAAAAJ&hl=it">Google Scholar</a>
+</p>
+
+<p align="center">
+  Post-Doctoral Research Fellow · Centre for Regenerative Medicine “Stefano Ferrari” · University of Modena and Reggio Emilia
+</p>
+
 ---
 
 ## Abstract
@@ -160,9 +170,11 @@ The computational framework combines structural information, AI-driven inverse p
 
 # 6. Conclusions
 
-I build computational methods and scientific software for biological research, with a growing focus on **deep learning for molecular systems**.
+You've made it this far, so I think we can conclude that **computational biology, scientific software, molecular modelling and AI** are probably of some interest to you.
 
-The long-term goal is not simply to build more complex models, but to develop computational approaches that scientists can **use, inspect, reproduce and understand**.
+If you are working on something related, have an idea to discuss, or simply want to exchange thoughts, **do not hesitate to get in touch.**
+
+[Email](mailto:serena.rosignoli@unimore.it) · [LinkedIn](https://www.linkedin.com/in/serenarosignoli97/)
 
 ---
 
@@ -184,14 +196,6 @@ Selected material from lectures, workshops and computational biology training.
 ### Computational utilities
 
 Scripts and tools for bioinformatics, structural analysis, molecular modelling and scientific workflows.
-
-### Contact
-
-**Post-Doctoral Research Fellow**  
-Centre for Regenerative Medicine “Stefano Ferrari”  
-University of Modena and Reggio Emilia
-
-[LinkedIn](https://www.linkedin.com/in/serenarosignoli97/) · [Google Scholar](https://scholar.google.com/citations?user=tFQ9tMAAAAAJ&hl=it)
 
 ---
 
