@@ -178,9 +178,9 @@ The computational framework combines structural information, AI-driven inverse p
 
 # 6. Conclusions
 
-You've made it this far, so I think we can conclude that **computational biology, scientific software, molecular modelling and AI** are probably of some interest to you.
-
-If you are working on something related, have an idea to discuss, or simply want to exchange thoughts, **do not hesitate to get in touch.**
+You've made it this far.
+Thank you for reading the manuscript.
+The author welcomes correspondence, collaborations, and well-motivated pull requests.
 
 [Email](mailto:serena.rosignoli@unimore.it) · [LinkedIn](https://www.linkedin.com/in/serenarosignoli97/)
 
