@@ -5,6 +5,7 @@
 
 <p align="center">
   <i>A computational approach to biological modelling, scientific software, and AI.</i>
+  <i>Manuscript status: continuously under revision.</i>
 </p>
 
 <p align="center">
