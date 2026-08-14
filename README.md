@@ -4,7 +4,8 @@
 </p>
 
 <p align="center">
-  <i>An evolving collection of computational methods, models, and software for biological research..</i><br>
+  <i>An evolving collection of computational methods, models, and software for biological research.</i><br>
+  <br>
   <i>Manuscript status: continuously under revision.</i>
 </p>
 
