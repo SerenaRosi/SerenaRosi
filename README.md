@@ -31,9 +31,9 @@ My work spans **molecular simulation, protein engineering, structural bioinforma
 
 # 1. Introduction
 
-<table>
+<table border="0" cellpadding="0" cellspacing="0">
 <tr>
-<td width="58%" valign="top">
+<td width="62%" valign="middle">
 
 Biological research increasingly relies on computational approaches to represent, model and analyse complex biological systems.
 
@@ -41,10 +41,12 @@ I work across different levels of biological representation, from **molecular st
 
 This perspective connects my work in structural bioinformatics, molecular simulation, protein engineering and AI.
 
-</td>
-<td width="42%" valign="middle" align="center">
 
-<img src="abstract-structure.png" alt="Protein–ligand molecular structure" width="420">
+
+</td>
+<td width="38%" valign="middle" align="center">
+
+<img src="abstract-structure.png" alt="Protein–ligand molecular structure" width="230">
 
 </td>
 </tr>
