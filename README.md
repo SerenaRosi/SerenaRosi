@@ -132,8 +132,6 @@ Computational models are becoming increasingly powerful in biology, but predicti
 
 My work increasingly focuses on the connection between **biological representation, computational models and biological interpretation**: understanding how molecular information is encoded, what models learn from these representations, and how computational methods can be made reproducible and practically useful.
 
-This is where my interests in **molecular modelling, deep learning and scientific software** converge.
-
 ---
 
 # 5. Future Perspectives
