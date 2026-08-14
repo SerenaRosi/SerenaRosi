@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-  <i>A computational approach to biological modelling, scientific software, and AI.</i>
+  <i>An evolving collection of computational methods, models, and software for biological research..</i><br>
   <i>Manuscript status: continuously under revision.</i>
 </p>
 
