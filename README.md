@@ -29,6 +29,10 @@ My work spans **molecular simulation, protein engineering, structural bioinforma
 
 ---
 
+<p align="center">
+  <img src="abstract-structure.png" alt="Protein–ligand molecular structure" width="520">
+</p>
+
 # 1. Introduction
 
 Biological research increasingly relies on computational approaches to represent, model and analyse complex biological systems.
