@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">Serena Rosignoli</h1>
+  <h1 align="center">Serena Rosignoli, PhD</h1>
   <p align="center"><strong>Computational Biologist · Research Software Engineer</strong></p>
 </p>
 
