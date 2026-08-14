@@ -1,178 +1,200 @@
-# Serena Rosignoli :paw_prints:
+<p align="center">
+  <h1 align="center">Serena Rosignoli</h1>
+  <p align="center"><strong>Computational Biologist · Research Software Engineer</strong></p>
+</p>
 
-**Computational biologist · Research software engineer**
+<p align="center">
+  <i>A computational approach to biological modelling, scientific software, and AI.</i>
+</p>
 
-## Where to find me
+---
 
-Post-Doctoral Research Fellow  
+## Abstract
+
+My work spans **molecular simulation, protein engineering, structural bioinformatics and machine learning**, with a particular interest in making computational models **interpretable, reproducible, and useful to experimental scientists**.
+
+<p align="center">
+  <i>Structural Biology · Scientific Software · Molecular Modelling · Machine Learning · AI for Molecular Systems</i>
+</p>
+
+---
+
+# 1. Introduction
+
+Biological research increasingly relies on computational approaches to represent, model and analyse complex biological systems.
+
+I work across different levels of biological representation, from **molecular structures and sequences to computational models and machine-learning representations**, developing both the methods and software needed to study them.
+
+This perspective connects my work in structural bioinformatics, molecular simulation, protein engineering and AI.
+
+---
+
+# 2. Methods
+
+## 2.1 Biological systems
+
+**Proteins** · **Nucleic acids** · **Molecular interactions** · **Genome editing**
+
+## 2.2 Computational approaches
+
+**Structural bioinformatics & molecular modelling**  
+Protein modelling · Molecular docking · Molecular dynamics · Structural analysis
+
+**Machine learning & deep learning**  
+Deep learning · Geometric deep learning · Protein language models · Sequence-based models · Molecular representations · Explainability
+
+**Protein engineering**  
+Computational design · Sequence analysis · Structure-based analysis
+
+## 2.3 Scientific software
+
+I develop and integrate computational methods across different stages of biological research, from molecular modelling and simulation to machine learning and scientific software. My work includes both methodological development and the implementation of practical workflows for biological applications.
+
+**Programming & development:**  
+Python · C++ · JavaScript · Git · Linux
+
+**Molecular modelling:**  
+PyMOL · Rosetta · OpenMM · GROMACS · MODELLER
+
+**Machine learning:**  
+PyTorch · PyTorch Geometric · DGL · ESM
+
+**Biological & structural data:**  
+PDB · UniProt · ChEMBL · BindingDB · KLIFS
+
+---
+
+# 3. Results
+
+### PyMod
+
+**Protein modelling and structural bioinformatics within PyMOL.**
+
+A platform integrating sequence analysis, structure prediction, homology modelling and structural analysis into a graphical molecular-modelling environment.
+
+`workflow design` · `tool integration` · `data handling` · `GUI development` · `automation`
+
+[Repository](https://github.com/pymodproject/pymod)
+
+---
+
+### DockingPie
+
+**Molecular docking workflows within PyMOL.**
+
+A plugin-based environment for integrating and automating different docking protocols through a unified graphical interface.
+
+`plugin architecture` · `CLI integration` · `I/O standardisation` · `GUI workflows` · `automation`
+
+[Repository](https://github.com/paiardin/DockingPie) · [Publication](https://doi.org/10.1093/bioinformatics/btac452)
+
+---
+
+### PyPCN
+
+**Protein structural analysis through contact-network representations.**
+
+A PyMOL plugin for constructing and analysing protein contact networks directly from molecular structures.
+
+`structural parsing` · `network construction` · `graph-based analysis` · `visualisation`
+
+[Repository](https://github.com/pcnproject/PyPCN) · [Publication](https://doi.org/10.1093/bioinformatics/btad675)
+
+---
+
+### AlPaCas
+
+**A computational framework for allele-specific CRISPR/Cas design.**
+
+A web server and computational pipeline for designing allele-specific genome-editing strategies, from mutation analysis to guide ranking and selection.
+
+`sequence analysis` · `scoring` · `web server` · `gene editing`
+
+[Publication](https://doi.org/10.1093/nar/gkae419)
+
+---
+
+### G4REP
+
+**Deep learning for RNA G-quadruplex-binding protein prediction.**
+
+A sequence-based framework for predicting human proteins associated with RNA G-quadruplexes using deep-learning models.
+
+`protein classification` · `ESM embeddings` · `deep learning`
+
+[Publication](https://doi.org/10.1093/bioinformatics/btag088)
+
+---
+
+# 4. Discussion
+
+Computational models are becoming increasingly powerful in biology, but predictive performance alone does not determine whether a model is useful to scientists.
+
+My work increasingly focuses on the connection between **biological representation, computational models and biological interpretation**: understanding how molecular information is encoded, what models learn from these representations, and how computational methods can be made reproducible and practically useful.
+
+This is where my interests in **molecular modelling, deep learning and scientific software** converge.
+
+---
+
+# 5. Future Perspectives
+
+### Virtual Kinome Assay (VKA)
+
+A current research direction is the development of **structure-informed deep-learning methods for molecular recognition and drug discovery**, with a focus on kinase selectivity.
+
+The **Virtual Kinome Assay (VKA)** is a framework designed to predict compound–kinase binding affinity across the human kinome by combining curated kinase structures, molecular docking and **geometric deep learning**. The aim is to provide a fast and scalable complement to experimental kinome profiling, while making predictions informative beyond a single affinity score.
+
+A central component of the project is **interpretability**: gradient-based explainability methods will be used to identify the regions of kinase–ligand complexes that contribute most to predicted affinity, helping connect model predictions with molecular interactions, potency and selectivity.
+
+`kinome profiling` · `molecular docking` · `geometric deep learning` · `binding affinity` · `interpretable models`
+
+### DYNAMITE: N-Myc-selective protein design and targeted degradation
+
+A second research direction focuses on **AI-assisted protein design for selective targeting of difficult protein interfaces**.
+
+DYNAMITE aims to engineer a peptide that selectively recognises N-Myc while discriminating against the highly similar interfaces of c-Myc, L-Myc and MAX. The designed binder will form part of a peptide PROTAC intended to promote targeted N-Myc degradation in MYCN-amplified neuroblastoma.
+
+The computational framework combines structural information, AI-driven inverse protein design and negative design, with biochemical and cellular experiments feeding back into successive design cycles. **Explainable methods are integrated into the design process to identify the molecular determinants of selective recognition and generate experimentally testable mechanistic hypotheses.**
+
+`protein design` · `inverse folding` · `negative design` · `deep learning` · `explainability` · `targeted degradation`
+
+---
+
+# 6. Conclusions
+
+I build computational methods and scientific software for biological research, with a growing focus on **deep learning for molecular systems**.
+
+The long-term goal is not simply to build more complex models, but to develop computational approaches that scientists can **use, inspect, reproduce and understand**.
+
+---
+
+## Selected publications
+
+- **AlPaCas** — allele-specific genome editing and computational design. [Nucleic Acids Research](https://doi.org/10.1093/nar/gkae419)
+- **PyPCN** — protein contact-network analysis. [Bioinformatics](https://doi.org/10.1093/bioinformatics/btad675)
+- **DockingPie** — molecular docking workflows in PyMOL. [Bioinformatics](https://doi.org/10.1093/bioinformatics/btac452)
+- **G4REP** — deep learning for RNA G-quadruplex-binding protein prediction. [Bioinformatics](https://doi.org/10.1093/bioinformatics/btag088)
+
+---
+
+## Supplementary Information
+
+### Teaching & learning resources
+
+Selected material from lectures, workshops and computational biology training.
+
+### Computational utilities
+
+Scripts and tools for bioinformatics, structural analysis, molecular modelling and scientific workflows.
+
+### Contact
+
+**Post-Doctoral Research Fellow**  
 Centre for Regenerative Medicine “Stefano Ferrari”  
-University of Modena and Reggio Emilia  
+University of Modena and Reggio Emilia
 
-📫 Email: `serena.rosignoli@unimore.it`  
-🔗 LinkedIn: [Serena Rosignoli](https://www.linkedin.com/in/serenarosignoli97/)  
-📚 Publications: [Google Scholar](https://scholar.google.com/citations?user=tFQ9tMAAAAAJ&hl=it)
-
-
-**Below is the “shopping-list” style of the things I've worked on, I know you do not really care, just contact me if curious.**
-
+[LinkedIn](https://www.linkedin.com/in/serenarosignoli97/) · [Google Scholar](https://scholar.google.com/citations?user=tFQ9tMAAAAAJ&hl=it)
 
 ---
 
-## PyMOL-based scientific software
-
-### PyMod  
-**User-facing platform for protein modelling and structural bioinformatics inside PyMOL.**
-
-PyMod integrates sequence analysis, structure prediction, homology modelling, and structural analysis into a graphical molecular-modelling environment.
-
-Through this project, I worked on:
-
-- user-facing workflow design
-- integration of external modelling tools
-- sequence/structure data handling
-- graphical interface logic
-- automation of complex modelling protocols
-- making structural bioinformatics workflows accessible to non-specialist users
-
-Repository: [PyMod](https://github.com/pymodproject/pymod)
-
----
-
-### DockingPie  
-**Plugin-based software for molecular docking workflows in PyMOL.**
-
-DockingPie was developed to make molecular docking protocols easier to run, compare, and interpret from a unified graphical interface.
-
-Through this project, I worked on:
-
-- plugin architecture
-- command-line tool integration
-- input/output standardization
-- graphical workflow design
-- docking protocol automation
-- usability-oriented scientific software development
-
-Repository: [DockingPie](https://github.com/paiardin/DockingPie)  
-Publication: [Bioinformatics paper](https://doi.org/10.1093/bioinformatics/btac452)
-
----
-
-### PyPCN  
-**PyMOL plugin for protein contact network analysis.**
-
-PyPCN supports the analysis of protein structures as residue-interaction networks, helping users explore structural relationships through graph-based representations.
-
-Through this project, I worked on:
-
-- structural data parsing
-- network construction from molecular structures
-- PyMOL-integrated visualization
-- user-oriented analysis workflows
-- scientific plugin development
-
-Repository: [PyPCN](https://github.com/pcnproject/PyPCN)  
-Publication: [Bioinformatics paper](https://doi.org/10.1093/bioinformatics/btad675)
-
----
-
-### AlPaCas: a tool for allele-specific genome editing
-
-AlPaCas is a web server and computational pipeline for designing allele-specific CRISPR/Cas strategies.  
-In practice: start from a mutation, encode the biological constraints, search for usable designs, rank them, and make the result readable enough for people who do not want to inspect every guide by hand.
-
-Publication: [Nucleic Acids Research paper](https://doi.org/10.1093/nar/gkae419)
-
-`sequence analysis` · `scoring logic` · `web server` · `gene editing`
-
----
-
-### G4REP  
-**Deep-learning framework for protein classification.**
-
-G4REP predicts human RNA G-quadruplex-binding proteins using sequence-based information and deep-learning models.
-
-Publication: [Bioinformatics paper](https://doi.org/10.1093/bioinformatics/btag088)
-
----
-
-### WORK IN PROGRESS 
-
-### Explainable AI for molecular models
-
-Reproducible pipelines to understand what machine-learning models use when making predictions on molecular systems.  
-Current focus: attribution methods, stability checks, faithfulness tests, benchmarking, and less hand-wavy ways to decide whether an explanation is actually useful.
-
-`Integrated Gradients` · `model evaluation` · `benchmarking` · `reproducibility`
-
----
-
-### AI-assisted protein design workflows
-
-Integration of protein design models into practical modelling workflows, including the annoying-but-important details: which residues are designable, which ones must stay fixed, how to run the model, parse the outputs, and bring generated sequences/structures back into the working environment.
-
-`ProteinMPNN` · `LigandMPNN` · `workflow design` · `output parsing`
-
----
-
-### Base-editing design workflows
-
-Extension of the same logic toward base editing: enumerate guides, map editing windows, check bystander effects, score the designs, and produce outputs that are useful before anyone starts ordering reagents.
-
-`CBE/ABE` · `editing windows` · `bystander risk` · `guide ranking`
-
----
-
-### Molecular dynamics utilities
-
-Scripts for molecular dynamics simulations when they need to behave on real systems and real clusters.  
-Current obsession: checkpointing, clean restarts, SLURM jobs that survive the mood of the node, and analysis scripts that make trajectories easier to inspect.
-
-`OpenMM` · `SLURM` · `checkpointing` · `trajectory analysis`
-
----
-
-## Utilities and learning resources
-
-### PyMOL toolbox  
-Small utilities, examples, and scripts for PyMOL-based development.
-
-Includes:
-
-- PyMOL environment utilities
-- plugin-development examples
-- threading examples for PyQt/PyMOL plugins
-- workflow helpers for structural bioinformatics
-
-Repository: [PyMOL toolbox](LINK_PLACEHOLDER)
-
----
-
-### Lectures and teaching material  
-Slides and teaching material from lectures, workshops, and summer schools.
-
-Topics include:
-
-- molecular docking
-- PyMOL and plugin-based modelling
-- structural bioinformatics
-- protein modelling
-- bioinformatics for non-specialists
-- data analysis concepts
-
-Repository: [Lectures and teaching material](LINK_PLACEHOLDER)
-
----
-
-### Python for bioinformatics toolbox  
-A collection of Python scripts and examples for bioinformatics workflows, data processing, and structural analysis.
-
-Repository: [Bioinfo Python toolbox](LINK_PLACEHOLDER)
-
----
-
-### Algorithms and programming practice  
-Programming assignments and algorithmic exercises developed while completing the Stanford Algorithms Specialization.
-
-Repository: [Algorithms Specialization](LINK_PLACEHOLDER)
-
----
+<sub><i>Data and code availability:</i> selected projects and scientific software are available through the repositories linked above.</sub>
