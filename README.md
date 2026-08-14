@@ -31,11 +31,11 @@ This perspective connects my work in structural bioinformatics, molecular simula
 
 # 2. Methods
 
-## 2.1 Biological systems
+## Biological systems
 
 **Proteins** · **Nucleic acids** · **Molecular interactions** · **Genome editing**
 
-## 2.2 Computational approaches
+## Computational approaches
 
 **Structural bioinformatics & molecular modelling**  
 Protein modelling · Molecular docking · Molecular dynamics · Structural analysis
@@ -46,7 +46,7 @@ Deep learning · Geometric deep learning · Protein language models · Sequence-
 **Protein engineering**  
 Computational design · Sequence analysis · Structure-based analysis
 
-## 2.3 Scientific software
+## Scientific software
 
 I develop and integrate computational methods across different stages of biological research, from molecular modelling and simulation to machine learning and scientific software. My work includes both methodological development and the implementation of practical workflows for biological applications.
 
