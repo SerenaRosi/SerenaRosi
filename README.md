@@ -4,9 +4,7 @@
 </p>
 
 <p align="center">
-  <i>An evolving collection of computational methods, models, and software for biological research.</i><br>
-  <br>
-  <i>Manuscript status: continuously under revision.</i>
+  <i>A computational approach to biological modelling, scientific software, and AI.</i>
 </p>
 
 <p align="center">
@@ -37,7 +35,7 @@ My work spans **molecular simulation, protein engineering, structural bioinforma
 
 Biological research increasingly relies on computational approaches to represent, model and analyse complex biological systems.
 
-I work across different levels of biological representation, from **molecular structures and sequences to computational models and machine-learning representations**, developing both the methods and software needed to study them.
+I work across different levels of biological representation, from **molecular structures and sequences to computational and machine-learning models**, developing both the methods and software needed to study them.
 
 This perspective connects my work in structural bioinformatics, molecular simulation, protein engineering and AI.
 
@@ -185,17 +183,6 @@ You've made it this far, so I think we can conclude that **computational biology
 If you are working on something related, have an idea to discuss, or simply want to exchange thoughts, **do not hesitate to get in touch.**
 
 [Email](mailto:serena.rosignoli@unimore.it) · [LinkedIn](https://www.linkedin.com/in/serenarosignoli97/)
-
----
-
-## Selected publications
-
-- **AlPaCas** — allele-specific genome editing and computational design. [Nucleic Acids Research](https://doi.org/10.1093/nar/gkae419)
-- **PyPCN** — protein contact-network analysis. [Bioinformatics](https://doi.org/10.1093/bioinformatics/btad675)
-- **DockingPie** — molecular docking workflows in PyMOL. [Bioinformatics](https://doi.org/10.1093/bioinformatics/btac452)
-- **G4REP** — deep learning for RNA G-quadruplex-binding protein prediction. [Bioinformatics](https://doi.org/10.1093/bioinformatics/btag088)
-
----
 
 ## Supplementary Information
 
