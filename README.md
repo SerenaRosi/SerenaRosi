@@ -3,9 +3,7 @@
   <p align="center"><strong>Computational Biologist · Research Software Engineer</strong></p>
 </p>
 
-<p align="center">
-  <i>A computational approach to biological modelling, scientific software, and AI.</i>
-</p>
+<p align="center"> <i>An evolving collection of computational methods, models, and software for biological research.</i><br> <br> <i>Manuscript status: continuously under revision.</i> </p>
 
 <p align="center">
   <a href="mailto:serena.rosignoli@unimore.it">Email</a> ·
